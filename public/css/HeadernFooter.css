@@ -1,0 +1,145 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.icono {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 30px;
+    width: 30px;
+    padding: 20px 20px;
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.25s ease-in-out;
+    z-index: 1002;
+    cursor: pointer;
+}
+
+._layer {
+    background: #333333;
+    margin-bottom: 4px;
+    width: 28px;
+    height: 4px;
+    opacity: 1;
+    transition: all 0.25s ease-in-out;
+}
+
+.icono-claro>._layer {
+    background: #e9e9e9e0;
+}
+
+.icono:hover .-top {
+    transform: translateY(-100%);
+}
+
+.icono:hover .-bottom {
+    transform: translateY(100%);
+}
+
+.icono-claro.is-active>._layer {
+    background: #333333;
+}
+
+.icono.is-active .-top {
+    transform: translateY(200%) rotate(45deg);
+}
+
+.icono.is-active .-mid {
+    opacity: 0;
+}
+
+.icono.is-active .-bottom {
+    transform: translateY(-200%) rotate(135deg);
+}
+
+.menu {
+    background-color: rgba(255, 255, 255, 0.7);
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    font-weight: bolder;
+    top: 0;
+    transform: translateY(-100%);
+    transition: transform 0.35s ease-in-out;
+    width: 100vw;
+    z-index: 1001;
+}
+
+.menu.is-active {
+    transform: translateY(0px);
+}
+
+.menu ul {
+    margin: 0;
+    padding: 0;
+}
+
+.menu ul li {
+    list-style: none;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 20px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: black;
+    transition: 0.35s ease-in-out;
+}
+
+.menu ul li img {
+    transition: 0.35s ease-in-out;
+}
+
+.menu ul li:hover a {
+    font-size: 2em;
+}
+
+.menu ul li:hover img {
+    transform: scale(1.1);
+}
+
+@media screen and (min-width:721px) {
+    body{
+        padding-top: 2em;
+        padding-left: 2em;
+    }
+    .icono {
+        display: none;
+    }
+    .menu {
+        transform: translateY(0px);
+        font-weight: normal;
+        bottom: 0;
+        height: 2em;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        z-index: 1001;
+    }
+    .menu ul {
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+    }
+    .menu ul li {
+        list-style: none;
+        text-align: center;
+        padding: .75em;
+        display: inline-block;
+        font-size: 1rem;
+    }
+    .menu ul li a {
+        text-decoration: none;
+        color: rgb(141, 141, 141);
+        transition: 0.35s ease-in-out;
+    }
+    .menu ul li:hover a {
+        font-size: 1rem;
+        color: rgb(54, 54, 54);
+        
+    }
+}
