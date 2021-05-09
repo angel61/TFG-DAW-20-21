@@ -1,3 +1,6 @@
 {% extends 'base.html.twig' %}
 {% trans_default_domain 'layout' %}
-{% block title %}{{ 'layout.inicio'|trans }}{% endblock %}
+{% block title %}
+	{{ 'layout.inicio'|trans }}
+{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/inicio.css') }}">{% endblock %}

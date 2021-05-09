@@ -17,10 +17,10 @@
 }
 
 ._layer {
-    background: #333333;
+    background: rgb(63, 63, 63);
     margin-bottom: 4px;
     width: 28px;
-    height: 4px;
+    height: 2px;
     opacity: 1;
     transition: all 0.25s ease-in-out;
 }
@@ -30,11 +30,11 @@
 }
 
 .icono:hover .-top {
-    transform: translateY(-100%);
+    transform: translateY(-200%);
 }
 
 .icono:hover .-bottom {
-    transform: translateY(100%);
+    transform: translateY(200%);
 }
 
 .icono-claro.is-active>._layer {
@@ -42,7 +42,7 @@
 }
 
 .icono.is-active .-top {
-    transform: translateY(200%) rotate(45deg);
+    transform: translateY(300%) rotate(45deg);
 }
 
 .icono.is-active .-mid {
@@ -50,7 +50,7 @@
 }
 
 .icono.is-active .-bottom {
-    transform: translateY(-200%) rotate(135deg);
+    transform: translateY(-300%) rotate(135deg);
 }
 
 .menu {
@@ -102,10 +102,6 @@
 }
 
 @media screen and (min-width:721px) {
-    body{
-        padding-top: 2em;
-        padding-left: 2em;
-    }
     .icono {
         display: none;
     }
@@ -113,7 +109,7 @@
         transform: translateY(0px);
         font-weight: normal;
         bottom: 0;
-        height: 2em;
+        height: fit-content;
         left: 0;
         position: fixed;
         top: 0;
