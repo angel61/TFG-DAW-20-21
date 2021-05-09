@@ -30,9 +30,10 @@ class Autores
     private $apellidos;
 
     /**
-     * @ORM\OneToMany(targetEntity=Libros::class, mappedBy="id_autor")
+     * @ORM\OneToMany(targetEntity=Libros::class, mappedBy="autor")
      */
     private $libros;
+
 
     public function __construct()
     {
@@ -76,22 +77,22 @@ class Autores
         return $this->libros;
     }
 
-    public function addLibros(Libros $libro): self
+    public function addLibro(Libros $libro): self
     {
-        if (!$this->Libros->contains($libro)) {
-            $this->Libros[] = $libro;
-            $libro->setIdAutor($this);
+        if (!$this->libros->contains($libro)) {
+            $this->libros[] = $libro;
+            $libro->setAutor($this);
         }
 
         return $this;
     }
 
-    public function removeLibros(Libros $libro): self
+    public function removeLibro(Libros $libro): self
     {
-        if ($this->Libros->removeElement($libro)) {
+        if ($this->libros->removeElement($libro)) {
             // set the owning side to null (unless already changed)
-            if ($libro->getIdAutor() === $this) {
-                $libro->setIdAutor(null);
+            if ($libro->getAutor() === $this) {
+                $libro->setAutor(null);
             }
         }
 

@@ -19,17 +19,6 @@ class Libros
      */
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=autores::class, inversedBy="libros")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $id_autor;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Editoriales::class, inversedBy="libros")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $id_editorial;
 
     /**
      * @ORM\Column(type="string", length=150)
@@ -121,6 +110,18 @@ class Libros
      */
     private $categorias;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=autores::class, inversedBy="libros")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $autor;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Editoriales::class, inversedBy="libros")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $editorial;
+
     public function __construct()
     {
         $this->categorias = new ArrayCollection();
@@ -131,29 +132,6 @@ class Libros
         return $this->id;
     }
 
-    public function getIdAutor(): ?autores
-    {
-        return $this->id_autor;
-    }
-
-    public function setIdAutor(?autores $id_autor): self
-    {
-        $this->id_autor = $id_autor;
-
-        return $this;
-    }
-
-    public function getIdEditorial(): ?Editoriales
-    {
-        return $this->id_editorial;
-    }
-
-    public function setIdEditorial(?Editoriales $id_editorial): self
-    {
-        $this->id_editorial = $id_editorial;
-
-        return $this;
-    }
 
     public function getNombre(): ?string
     {
@@ -382,6 +360,30 @@ class Libros
         if ($this->categorias->removeElement($categoria)) {
             $categoria->removeIdLibro($this);
         }
+
+        return $this;
+    }
+
+    public function getAutor(): ?autores
+    {
+        return $this->autor;
+    }
+
+    public function setAutor(?autores $autor): self
+    {
+        $this->autor = $autor;
+
+        return $this;
+    }
+
+    public function getEditorial(): ?Editoriales
+    {
+        return $this->editorial;
+    }
+
+    public function setEditorial(?Editoriales $editorial): self
+    {
+        $this->editorial = $editorial;
 
         return $this;
     }

@@ -25,13 +25,14 @@ class Editoriales
     private $nombre;
 
     /**
-     * @ORM\OneToMany(targetEntity=Libros::class, mappedBy="id_editorial")
+     * @ORM\OneToMany(targetEntity=Libros::class, mappedBy="editorial")
      */
     private $libros;
 
+
     public function __construct()
     {
-        $this->libros = new ArrayCollection();
+        $this->libross = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -59,25 +60,26 @@ class Editoriales
         return $this->libros;
     }
 
-    public function addLibro(Libros $libro): self
+    public function addLibros(Libros $libros): self
     {
-        if (!$this->libros->contains($libro)) {
-            $this->libros[] = $libro;
-            $libro->setIdEditorial($this);
+        if (!$this->libros->contains($libros)) {
+            $this->libros[] = $libros;
+            $libros->setEditorial($this);
         }
 
         return $this;
     }
 
-    public function removeLibro(Libros $libro): self
+    public function removeLibross(Libros $libros): self
     {
-        if ($this->libros->removeElement($libro)) {
+        if ($this->libross->removeElement($libros)) {
             // set the owning side to null (unless already changed)
-            if ($libro->getIdEditorial() === $this) {
-                $libro->setIdEditorial(null);
+            if ($libros->getEditorial() === $this) {
+                $libros->setEditorial(null);
             }
         }
 
         return $this;
     }
+
 }

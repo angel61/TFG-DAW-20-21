@@ -28,8 +28,8 @@ class DefaultController extends AbstractController
         ->find(1);
         $entityManager = $this->getDoctrine()->getManager();
         $product = new Libros();
-        $product->setIdAutor($idAutor);
-        $product->setIdEditorial(($idEditorial));
+        $product->setAutor($idAutor);
+        $product->setEditorial(($idEditorial));
         $product->setNombre('CICATRICES DE ÁFRICA');
         $product->setUrlCompra('https://www.amazon.es/CICATRICES-%C3%81FRICA-Apasionante-historia-aventuras-ebook/dp/B072FD3H3P');
         $product->setIsbn('8469735489');
