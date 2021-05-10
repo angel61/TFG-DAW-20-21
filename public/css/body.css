@@ -2,7 +2,7 @@
 body{
     background-color: #E4E3E9;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     color: #38373C;
 }
 .cabecera-pagina {
@@ -12,6 +12,14 @@ body{
 }
 
 .cabecera-imagen {
+    width: 100%;
+    height: 100%;
+    
+    object-fit: cover;
+    object-position: center;
+    z-index: -1;
+}
+.cabecera-imagen>img {
     width: 100%;
     height: 100%;
     

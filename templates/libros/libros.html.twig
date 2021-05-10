@@ -14,23 +14,15 @@
 	</div>
 	<div class="container  pt-2 pt-md-3 pt-lg-">
 		{% for key, libro in libros %}
-			{#<div class="card col-12 my-4 listado-libro">
-							<img class="card-img" src="{{ asset('images/cicatrices-de-africa.jpg') }}">
-							<div class="card-body">
-								<h5 class="card-title">{{ libro.nombre }}</h5>
-								<p class="card-text">{{ libro.descripcionCorta }}</p>
-								<a href="#" class="btn btn-primary">Go somewhere</a>
-							</div>
-						</div>#}
 			<div class="listado-libro row m-4">
 				<div class="libro-portada col-md-4">
 					<img src="{{ asset('images/'~libro.urlPortada) }}" class="libro-img">
-					<img src="{{ asset('images/'~libro.urlPortada) }}"class="libro-backgr">
+					<img src="{{ asset('images/'~libro.urlPortada) }}" class="libro-backgr">
 				</div>
 				<div class="col-md-8">
 					<h5>{{ libro.nombre }}</h5>
 					<p>{{ libro.descripcionCorta }}</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
+					<a href="{{ path('libros')~'/'~libro.id }}">Más información</a>
 				</div>
 			</div>
 		{% endfor %}
