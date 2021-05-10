@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'layout' %}
+{% block title %}
+	{{ 'layout.noticias'|trans }}
+{% endblock %}
+{% block body %}
+	<div class="cabecera-pagina">
+		<div class="cabecera-imagen">
+			<img src="{{ asset('images/cabecera.jpg') }}" class="img-fluid" alt="Responsive image">
+		</div>
+		<div class="cabecera-titulo">
+			<h2>{{ 'layout.noticias'|trans }}</h2>
+		</div>
+	</div>
+{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/noticias.css') }}">
+{% endblock %}

@@ -111,7 +111,7 @@ class Libros
     private $categorias;
 
     /**
-     * @ORM\ManyToOne(targetEntity=autores::class, inversedBy="libros")
+     * @ORM\ManyToOne(targetEntity=Autores::class, inversedBy="libros")
      * @ORM\JoinColumn(nullable=false)
      */
     private $autor;
@@ -121,6 +121,11 @@ class Libros
      * @ORM\JoinColumn(nullable=false)
      */
     private $editorial;
+
+    /**
+     * @ORM\Column(type="string", length=200)
+     */
+    private $url_portada;
 
     public function __construct()
     {
@@ -364,12 +369,12 @@ class Libros
         return $this;
     }
 
-    public function getAutor(): ?autores
+    public function getAutor(): ?Autores
     {
         return $this->autor;
     }
 
-    public function setAutor(?autores $autor): self
+    public function setAutor(?Autores $autor): self
     {
         $this->autor = $autor;
 
@@ -384,6 +389,18 @@ class Libros
     public function setEditorial(?Editoriales $editorial): self
     {
         $this->editorial = $editorial;
+
+        return $this;
+    }
+
+    public function getUrlPortada(): ?string
+    {
+        return $this->url_portada;
+    }
+
+    public function setUrlPortada(string $url_portada): self
+    {
+        $this->url_portada = $url_portada;
 
         return $this;
     }

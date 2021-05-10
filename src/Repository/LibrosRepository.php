@@ -22,19 +22,17 @@ class LibrosRepository extends ServiceEntityRepository
     // /**
     //  * @return Libros[] Returns an array of Libros objects
     //  */
-    /*
-    public function findByExampleField($value)
+    
+    public function getLibros()
     {
         return $this->createQueryBuilder('l')
-            ->andWhere('l.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('l.id', 'ASC')
+        ->where('autor = 1')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+   
 
     /*
     public function findOneBySomeField($value): ?Libros

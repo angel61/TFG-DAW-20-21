@@ -1,0 +1,34 @@
+
+body{
+    background-color: #E4E3E9;
+    height: 100vh;
+    width: 100vw;
+    color: #38373C;
+}
+.cabecera-pagina {
+    height: 20em;
+    width: 100%;
+    overflow: hidden;
+}
+
+.cabecera-imagen {
+    width: 100%;
+    height: 100%;
+    
+    object-fit: cover;
+    object-position: center;
+    z-index: -1;
+}
+
+.cabecera-titulo {
+    position: relative;
+    top: -100%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    color: #EEEFF3;
+}

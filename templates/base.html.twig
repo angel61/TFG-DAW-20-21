@@ -9,8 +9,9 @@
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
 						           and uncomment the following Encore helpers to start using Symfony UX #}
-		<link rel="stylesheet" href="{{ asset('css/HeadernFooter.css') }}">
 		<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/HeadernFooter.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/body.css') }}">
 		{% block stylesheets %}
 			{#{{ encore_entry_link_tags('app') }}#}
 		{% endblock %}
@@ -18,11 +19,11 @@
 	<body>
 		<nav class="menu">
 			<ul>
-				<li><a href="{{path('inicio_locale')}}">{{ 'layout.inicio'|trans }}</a></li>
-				<li><a href="{{path('sobreMi_locale')}}">{{ 'layout.sobremi'|trans }}</a></li>
-				<li><a href="{{path('libros_locale')}}">{{ 'layout.libros'|trans }}</a></li>
-				<li><a href="{{path('noticias_locale')}}">{{ 'layout.noticias'|trans }}</a></li>
-				<li><a href="{{path('contacto_locale')}}">{{ 'layout.contacto'|trans }}</a></li>
+				<li><a href="{{path('inicio')}}">{{ 'layout.inicio'|trans }}</a></li>
+				<li><a href="{{path('sobreMi')}}">{{ 'layout.sobremi'|trans }}</a></li>
+				<li><a href="{{path('libros')}}">{{ 'layout.libros'|trans }}</a></li>
+				<li><a href="{{path('noticias')}}">{{ 'layout.noticias'|trans }}</a></li>
+				<li><a href="{{path('contacto')}}">{{ 'layout.contacto'|trans }}</a></li>
 			</ul>
 		</nav>
 		<div class="icono">
