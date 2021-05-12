@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Entity\Autores;
@@ -15,13 +16,15 @@ class LibrosController extends AbstractController
      * @Route("/libros", name="libros", defaults={"_locale"="es"}, requirements={"_locale"="%app.locales%"})
      * Route("/{_locale}/libros", name="libros_locale", requirements={"_locale" = "%app.locales%"})
      */
-    public function libros(TranslatorInterface $translator): Response{
-        $entityManager = $this->getDoctrine()->getManager();
-        $libros = $entityManager->getRepository(Autores::class)->find(1)->getLibros();
-            return $this->render('libros/libros.html.twig', [
-                'libros'=>$libros
-            ]);
-        
+    public function libros(): Response
+    {
+        $libros = $this->getDoctrine()
+            ->getRepository(Libros::class)
+            ->getLibrosAutor(1);
+
+        return $this->render('libros/libros.html.twig', [
+            'libros' => $libros
+        ]);
     }
 
     /**
@@ -30,8 +33,11 @@ class LibrosController extends AbstractController
      */
     public function libro($id): Response
     {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->getRepository(Libros::class)->find($id);
+
         return $this->render('prueba/inicio.html.twig', [
-            "texto"=>"libro ".$id
+            "texto" => "libro " . $id
         ]);
     }
 }

@@ -23,14 +23,19 @@ class LibrosRepository extends ServiceEntityRepository
     //  * @return Libros[] Returns an array of Libros objects
     //  */
     
-    public function getLibros()
+    public function getLibrosAutor($autor)
     {
-        return $this->createQueryBuilder('l')
-        ->where('autor = 1')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT l
+            FROM App\Entity\Libros l
+            WHERE l.autor  = :autor
+            ORDER BY l.id ASC'
+        )->setParameter('autor', $autor);
+
+        // returns an array of Product objects
+        return $query->getResult();
     }
    
 

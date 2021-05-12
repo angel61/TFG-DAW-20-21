@@ -1,17 +1,12 @@
 {% extends 'base.html.twig' %}
 {% trans_default_domain 'layout' %}
+
+{% set nombre_pagina = 'layout.sobremi'|trans %}
+
 {% block title %}
 	{{ 'layout.sobremi'|trans }}
 {% endblock %}
 {% block body %}
-	<div class="cabecera-pagina">
-		<div class="cabecera-imagen">
-			<img src="{{ asset('images/cabecera.jpg') }}" class="img-fluid" alt="Responsive image">
-		</div>
-		<div class="cabecera-titulo">
-			<h2>{{ 'layout.sobremi'|trans }}</h2>
-		</div>
-	</div>
 	<div class="container pt-2 pt-md-3 pt-lg-5">
 		<p>Cristina Palacios Hernáez, nacida en Vitoria – Gasteiz, realizó estudios de Ciencias Económicas
 																		en las Universidades de Alcalá de Henares (Madrid) y la UNED. Reside en Guadalajara y trabaja

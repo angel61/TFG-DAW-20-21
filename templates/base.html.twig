@@ -7,10 +7,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>
 			{% trans_default_domain 'layout' %}
-			{% block title %}{% endblock %}
+			{{ nombre_pagina|default('Error') }}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-														           and uncomment the following Encore helpers to start using Symfony UX #}
+																           and uncomment the following Encore helpers to start using Symfony UX #}
 		<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/HeadernFooter.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/body.css') }}">
@@ -19,13 +19,14 @@
 		{% endblock %}
 	</head>
 	<body>
+	{% set ruta_actual = app.request.attributes.get('_route') %}
 		<nav class="menu">
 			<ul>
-				<li><a href="{{ path('inicio') }}">{{ 'layout.inicio'|trans }}</a></li>
-				<li><a href="{{ path('sobreMi') }}">{{ 'layout.sobremi'|trans }}</a></li>
-				<li><a href="{{ path('libros') }}">{{ 'layout.libros'|trans }}</a></li>
-				<li><a href="{{ path('noticias') }}">{{ 'layout.noticias'|trans }}</a></li>
-				<li><a href="{{ path('contacto') }}">{{ 'layout.contacto'|trans }}</a></li>
+				<li><a href="{{ path('inicio') }}" {% if ruta_actual|default('inicio') == 'inicio' %} class="menu-activo"{% endif %}>{{ 'layout.inicio'|trans }}</a></li>
+				<li><a href="{{ path('sobreMi') }}" {% if ruta_actual == 'sobreMi' %} class="menu-activo"{% endif %}>{{ 'layout.sobremi'|trans }}</a></li>
+				<li><a href="{{ path('libros') }}" {% if ruta_actual == 'libros' or ruta_actual == 'libro' %} class="menu-activo"{% endif %}>{{ 'layout.libros'|trans }}</a></li>
+				<li><a href="{{ path('noticias') }}" {% if ruta_actual == 'noticias' %} class="menu-activo"{% endif %}>{{ 'layout.noticias'|trans }}</a></li>
+				<li><a href="{{ path('contacto') }}" {% if ruta_actual == 'contacto' %} class="menu-activo"{% endif %}>{{ 'layout.contacto'|trans }}</a></li>
 			</ul>
 		</nav>
 		<div class="icono">
@@ -33,6 +34,18 @@
 			<div class="_layer -mid"></div>
 			<div class="_layer -bottom"></div>
 		</div>
+
+		{% if app.request.attributes.get('_route') != 'inicio' %}
+			<div class="cabecera-pagina">
+				<div class="cabecera-imagen">
+					<img src="{{ asset('images/cabecera.jpg') }}" class="img-fluid" alt="Responsive image">
+				</div>
+				<div class="cabecera-titulo">
+					<h2>{{ nombre_pagina|default('Error') }}</h2>
+				</div>
+			</div>
+		{% endif %}
+
 		{% block body %}{% endblock %}
 
 		<script src="{{ asset('jquery/jquery.min.js') }}"></script>

@@ -149,9 +149,13 @@
         transition: 0.35s ease-in-out;
         font-weight: bolder;
     }
+    .menu ul li .menu-activo{
+        color: #38373C;
+    }
     .menu ul li:hover a {
         font-size: 1rem;
         color: #38373C;
         
     }
+    
 }

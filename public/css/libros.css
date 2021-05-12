@@ -1,7 +1,21 @@
-.listado-libro {
-    height: 20em;
+.contenedor-libros{
     display: flex;
-    
+    flex-flow: column;
+    gap: 2em;
+    width: 50em;
+}
+
+.listado-libro {
+    height: 25em;
+    display: flex;
+    flex-flow: row;
+    background-color: #F0F1F5;
+    z-index: -2;
+    border-radius: 4px;
+    box-shadow: 0px 13px 61px 3px rgba(0,0,0,0.1);
+}
+.listado-libro-reverso {
+    flex-flow: row-reverse;
 }
 
 .libro-portada {
@@ -27,11 +41,15 @@
 }
 
 @media screen and (max-width:721px) {
-    .listado-libro {
+    .listado-libro-reverso,.listado-libro {
         height: fit-content;
+        flex-flow: column;
     }
     .libro-portada {
         height: 20em;
         padding: 2em;
+    }
+    .contenedor-libros{
+        width: fit-content;
     }
 }

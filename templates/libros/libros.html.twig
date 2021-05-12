@@ -1,32 +1,32 @@
 {% extends 'base.html.twig' %}
 {% trans_default_domain 'layout' %}
+
+{% set nombre_pagina = 'layout.libros'|trans %}
+
 {% block title %}
 	{{ 'layout.libros'|trans }}
 {% endblock %}
 {% block body %}
-	<div class="cabecera-pagina">
-		<div class="cabecera-imagen">
-			<img src="{{ asset('images/cabecera.jpg') }}" class="img-fluid" alt="Responsive image">
-		</div>
-		<div class="cabecera-titulo">
-			<h2>{{ 'layout.libros'|trans }}</h2>
-		</div>
-	</div>
-	<div class="container  pt-2 pt-md-3 pt-lg-">
+	<div class="container py-2 py-md-3 py-lg-4 d-flex flex-column contenedor-libros">
 		{% for key, libro in libros %}
-			<div class="listado-libro row m-4">
-				<div class="libro-portada col-md-4">
-					<img src="{{ asset('images/'~libro.urlPortada) }}" class="libro-img">
-					<img src="{{ asset('images/'~libro.urlPortada) }}" class="libro-backgr">
+			{% if key % 2 == 0 %}
+				<div class="listado-libro m-1 row">
+			{% else %}
+				<div class="listado-libro listado-libro-reverso m-1 row">
+			{% endif %}
+					<div class="libro-portada col-md-5">
+						<img src="{{ asset('images/'~libro.urlPortada) }}" class="libro-img">
+						<img src="{{ asset('images/'~libro.urlPortada) }}" class="libro-backgr">
+					</div>
+					<div class="col-md-7 p-4 p-md-5 text-justify">
+						<h5>{{ libro.nombre }}</h5>
+						<p>{{ libro.descripcionCorta }}</p>
+						<a href="{{ path('libros')~'/'~libro.id }}">Más información</a>
+					</div>
 				</div>
-				<div class="col-md-8">
-					<h5>{{ libro.nombre }}</h5>
-					<p>{{ libro.descripcionCorta }}</p>
-					<a href="{{ path('libros')~'/'~libro.id }}">Más información</a>
-				</div>
-			</div>
 		{% endfor %}
 	</div>
 {% endblock %}
-{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/libros.css') }}">
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/libros.css') }}">
 {% endblock %}
