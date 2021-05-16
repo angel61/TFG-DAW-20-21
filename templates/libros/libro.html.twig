@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'layout' %}
+
+{% set nombre_pagina = libro.nombre %}
+{% set cabecera_imagen = asset('images/'~libro.urlPortada) %}
+
+{% block title %}
+	{{ libro.nombre }}
+{% endblock %}
+{% block body %}
+			<div class="apartado-libro">
+				<div class="listado-libro row">
+					<div class="libro-portada col-md-6">
+						<img src="{{ asset('images/'~libro.urlPortada) }}" class="libro-img">
+					</div>
+					<div class="col-md-6 libro-texto">
+						<div>
+							<h1>{{ libro.nombre }}</h1>
+							<p>{{ libro.descripcionLarga|nl2br }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+{% endblock %}
+{% block stylesheets %}
+	{# <link rel="stylesheet" href="{{ asset('css/libros.css') }}"> #}
+	<link rel="stylesheet" href="{{ asset('css/libro.css') }}">
+{% endblock %}

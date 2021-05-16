@@ -1,0 +1,7 @@
+.cabecera-imagen {
+    position: relative;
+    left: -3%;
+    filter: blur(1em) brightness(0.3);
+    width: 110%;
+    height: 110%;
+}

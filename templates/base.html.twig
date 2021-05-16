@@ -38,7 +38,7 @@
 		{% if app.request.attributes.get('_route') != 'inicio' %}
 			<div class="cabecera-pagina">
 				<div class="cabecera-imagen">
-					<img src="{{ asset('images/cabecera.jpg') }}" class="img-fluid" alt="Responsive image">
+					<img src="{{ cabecera_imagen|default(asset('images/cabecera.jpg')) }}" class="img-fluid" alt="Responsive image">
 				</div>
 				<div class="cabecera-titulo">
 					<h2>{{ nombre_pagina|default('Error') }}</h2>

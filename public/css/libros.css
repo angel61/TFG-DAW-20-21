@@ -1,35 +1,61 @@
-.contenedor-libros{
+.contenedor-libros {
     display: flex;
     flex-flow: column;
     gap: 2em;
-    width: 50em;
+}
+
+.apartado-libro {
+    overflow: hidden;
+    position:relative;
+    height: 100vh;
+    width: 100%;
+    border-radius: 4px;
 }
 
 .listado-libro {
-    height: 25em;
+    height: 100%;
+    display: inline-block;
     display: flex;
     flex-flow: row;
-    background-color: #F0F1F5;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f1f500;
+    color: #3a3a3a;
     z-index: -2;
-    border-radius: 4px;
-    box-shadow: 0px 13px 61px 3px rgba(0,0,0,0.1);
+    padding: 10%;
 }
+
 .listado-libro-reverso {
     flex-flow: row-reverse;
+    background-color: whitesmoke;
 }
 
 .libro-portada {
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.libro-backgr {
-    position: relative;
-    top: -100%;
-    width: 100%;
+.libro-portada>img {
+    overflow: hidden;
+}
+
+.libro-texto {
+    position:relative;
     height: 100%;
-    object-fit: cover;
-    filter: blur(2px) grayscale(30%);
-    z-index: -1;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid whitesmoke;
+    padding: 5%;
+}
+
+
+.listado-libro-reverso>.libro-texto{
+    border: 3px solid #E4E3E9;
 }
 
 .libro-img {
@@ -40,16 +66,44 @@
     z-index: 10;
 }
 
+@media screen and (max-width:992px) {
+    
+    .listado-libro-reverso, .listado-libro {
+        height: 50vh;
+    }
+    .apartado-libro {
+        height: fit-content;
+        overflow: hidden;
+    }
+    .contenedor-libros {
+        gap: 1em;
+    }
+
+}
+
+
+
+
 @media screen and (max-width:721px) {
-    .listado-libro-reverso,.listado-libro {
+    .listado-libro-reverso, .listado-libro {
         height: fit-content;
         flex-flow: column;
     }
     .libro-portada {
-        height: 20em;
-        padding: 2em;
+        height: 16em;
     }
-    .contenedor-libros{
-        width: fit-content;
+    .apartado-libro {
+        height: fit-content;
+    }
+    .contenedor-libros {
+        gap: 1em;
+    }
+    .libro-texto{
+        width: 100%;
+        height: 100%;
+    }
+    .libro-portada{
+        padding-bottom: 1em;
     }
 }
+

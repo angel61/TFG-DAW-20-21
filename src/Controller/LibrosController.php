@@ -34,10 +34,10 @@ class LibrosController extends AbstractController
     public function libro($id): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->getRepository(Libros::class)->find($id);
+        $libro=$entityManager->getRepository(Libros::class)->find($id);
 
-        return $this->render('prueba/inicio.html.twig', [
-            "texto" => "libro " . $id
+        return $this->render('libros/libro.html.twig', [
+            "libro" => $libro
         ]);
     }
 }
