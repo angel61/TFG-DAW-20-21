@@ -49,13 +49,13 @@
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    border: 3px solid whitesmoke;
+    border: 4px solid whitesmoke;
     padding: 5%;
 }
 
 
 .listado-libro-reverso>.libro-texto{
-    border: 3px solid #E4E3E9;
+    border: 4px solid #E4E3E9;
 }
 
 .libro-img {
