@@ -37,6 +37,26 @@ class LibrosRepository extends ServiceEntityRepository
         // returns an array of Product objects
         return $query->getResult();
     }
+
+    // /**
+    //  * @return Libros Returns a Libros objects
+    //  */
+    
+    public function getLibroPortada($autor)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT l
+            FROM App\Entity\Libros l
+            WHERE l.autor  = :autor
+            ORDER BY l.fecha_publicacion DESC'
+        )
+        ->setParameter('autor', $autor)
+        ->setMaxResults(1);
+
+        return $query->getOneOrNullResult();
+    }
    
 
     /*

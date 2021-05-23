@@ -1,17 +1,46 @@
 /* Color Theme Swatches in Hex */
-.hex { color: #E4E3E9; }
-.hex { color: #F0F1F5; }
-.hex { color: #D0CFD3; }
-.hex { color: #38373C; }
-.hex { color: #EEEFF3; }
+
+.hex {
+    color: #E4E3E9;
+}
+
+.hex {
+    color: #F0F1F5;
+}
+
+.hex {
+    color: #D0CFD3;
+}
+
+.hex {
+    color: #38373C;
+}
+
+.hex {
+    color: #EEEFF3;
+}
 
 /* Color Theme Swatches in RGBA */
-.rgba { color: rgba(228, 227, 233, 1); }
-.rgba { color: rgba(240, 241, 245, 1); }
-.rgba { color: rgba(208, 207, 211, 1); }
-.rgba { color: rgba(56, 55, 60, 1); }
-.rgba { color: rgba(238, 239, 243, 1); }
 
+.rgba {
+    color: rgba(228, 227, 233, 1);
+}
+
+.rgba {
+    color: rgba(240, 241, 245, 1);
+}
+
+.rgba {
+    color: rgba(208, 207, 211, 1);
+}
+
+.rgba {
+    color: rgba(56, 55, 60, 1);
+}
+
+.rgba {
+    color: rgba(238, 239, 243, 1);
+}
 
 * {
     box-sizing: border-box;
@@ -69,6 +98,108 @@
     transform: translateY(-300%) rotate(135deg);
 }
 
+.menu-toggle span {
+    display: block;
+    background: #38373C;
+    border-radius: 2px;
+    transition: .25s ease-in-out;
+    z-index: 1101;
+}
+
+.menu-toggle {
+    height: 40px;
+    width: 40px;
+    margin: 10px;
+    position: relative;
+    position: fixed;
+    cursor: pointer;
+    background: rgba(255, 255, 255, .4);
+    border-radius: 5px;
+    transition: .25s ease-in-out;
+    z-index: 1100;
+}
+
+.hamburger {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.hamburger span {
+    width: 28px;
+    height: 2px;
+    position: relative;
+    left: 6px;
+    margin: 8px 0;
+}
+
+.hamburger span:nth-child(1) {
+    transition-delay: .5s;
+}
+
+.hamburger span:nth-child(2) {
+    transition-delay: .625s;
+}
+
+.hamburger span:nth-child(3) {
+    transition-delay: .75s;
+}
+
+.cross {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    transform: rotate(45deg);
+}
+
+.cross span:nth-child(1) {
+    height: 0%;
+    width: 2px;
+    position: absolute;
+    top: 10%;
+    left: 19px;
+    transition-delay: 0s;
+}
+
+.cross span:nth-child(2) {
+    width: 0%;
+    height: 2px;
+    position: absolute;
+    left: 10%;
+    top: 19px;
+    transition-delay: .25s;
+}
+
+.menu-toggle.open {
+    background-color: transparent;
+}
+
+.menu-toggle.open>.hamburger>span {
+    width: 0%;
+}
+
+.menu-toggle.open>.hamburger>span:nth-child(1) {
+    transition-delay: 0s;
+}
+
+.menu-toggle.open>.hamburger>span:nth-child(2) {
+    transition-delay: .125s;
+}
+
+.menu-toggle.open>.hamburger>span:nth-child(3) {
+    transition-delay: .25s;
+}
+
+.menu-toggle.open>.cross>span:nth-child(1) {
+    height: 80%;
+    transition-delay: .625s;
+}
+
+.menu-toggle.open>.cross>span:nth-child(2) {
+    width: 80%;
+    transition-delay: .375s;
+}
+
 .menu {
     background-color: #f0f1f5b6;
     bottom: 0;
@@ -117,8 +248,16 @@
     transform: scale(1.1);
 }
 
+footer {
+    background-color: #38373C;
+}
+
+.titulo-footer {
+    font-family: 'League Script', cursive;
+}
+
 @media screen and (min-width:721px) {
-    .icono {
+    .menu-toggle {
         display: none;
     }
     .menu {
@@ -150,13 +289,11 @@
         transition: 0.35s ease-in-out;
         font-weight: bolder;
     }
-    .menu ul li .menu-activo{
+    .menu ul li .menu-activo {
         color: #38373C;
     }
     .menu ul li:hover a {
         font-size: 1rem;
         color: #38373C;
-        
     }
-    
 }

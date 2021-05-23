@@ -3,71 +3,32 @@
 
 {% set nombre_pagina = 'layout.contacto'|trans %}
 {% block title %}
-	{{ libro.nombre }}
+{{ libro.nombre }}
 {% endblock %}
 {% block body %}
-	<section class="u-clearfix u-palette-1-base u-section-1" id="sec-517f">
-		<div class="u-clearfix u-sheet u-valign-middle-xl u-sheet-1">
-			<div class="u-align-left u-container-style u-expanded-width-xs u-group u-white u-group-1">
-				<div class="u-container-layout u-valign-middle-lg u-valign-middle-xl u-valign-top-md u-valign-top-sm u-valign-top-xs u-container-layout-1">
-					<h2 class="u-custom-font u-font-oswald u-text u-text-1">Contact Us</h2>
-					<div class="u-align-left u-form u-form-1">
-						<form action="https://nicepage.com/editor/Forms/Process" method="POST" class="u-clearfix u-form-spacing-28 u-form-vertical u-inner-form" style="padding: 10px" source="email" name="form">
-							<div class="u-form-group u-form-name u-form-group-1">
-								<label for="name-5a14" class="u-form-control-hidden u-label" wfd-invisible="true">Name</label>
-								<input type="text" placeholder="Enter your Name" id="name-5a14" name="name" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" required="">
-							</div>
-							<div class="u-form-email u-form-group u-form-group-2">
-								<label for="email-5a14" class="u-form-control-hidden u-label" wfd-invisible="true">Email</label>
-								<input type="email" placeholder="Enter a valid email address" id="email-5a14" name="email" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" required="">
-							</div>
-							<div class="u-form-group u-form-message u-form-group-3">
-								<label for="message-5a14" class="u-form-control-hidden u-label" wfd-invisible="true">Message</label>
-								<textarea placeholder="Enter your message" rows="4" cols="50" id="message-5a14" name="message" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" required=""></textarea>
-							</div>
-							<div class="u-align-left u-form-group u-form-submit u-form-group-4">
-								<a href="#" class="u-border-2 u-border-black u-btn u-btn-submit u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1">Submit</a>
-								<input type="submit" value="submit" class="u-form-control-hidden" wfd-invisible="true">
-							</div>
-							<div class="u-form-send-message u-form-send-success" wfd-invisible="true">
-								Thank you! Your message has been sent.
-							</div>
-							<div class="u-form-send-error u-form-send-message" wfd-invisible="true">
-								Unable to send your message. Please fix errors then try again.
-							</div>
-							<input type="hidden" value="" name="recaptchaResponse" wfd-invisible="true">
-						</form>
-					</div>
-				</div>
+<div class="container contenedor-contacto">
+	<div class="formulario-contacto col-md-8 col-lg-6 p-4 my-5">
+		<div class="titulo-contacto">Contactanos</div>
+        {{ form_start(our_form) }}
+			<div class="d-flex flex-column contenedor-form-contacto">
+				
+				{{ form_row(our_form.name, { 
+                    'attr': {'class': 'input-borde'}
+				}) }}
+				{{ form_row(our_form.from, { 
+                    'attr': {'class': 'input-borde'}
+				}) }}
+				{{ form_row(our_form.message, { 
+                    'attr': {'class': 'input-borde'}
+				}) }}
+				<input type="submit" value="Enviar" class="boton-borde col-md-4">
+				{{ form_errors(our_form) }}
 			</div>
-			<div class="u-expanded-width-xs u-list u-list-1">
-				<div class="u-repeater u-repeater-1">
-					<div class="u-container-style u-list-item u-palette-5-dark-3 u-repeater-item u-list-item-1">
-						<div class="u-container-layout u-similar-container u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xl u-container-layout-2">
-							
-							<h5 class="u-text u-text-2">Call Us</h5>
-							<p class="u-text u-text-3">1 (234) 567-891, 1 (234) 987-654</p>
-						</div>
-					</div>
-					<div class="u-container-style u-list-item u-palette-5-dark-3 u-repeater-item u-list-item-2">
-						<div class="u-container-layout u-similar-container u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xl u-container-layout-3">
-							
-							<h5 class="u-text u-text-4">Location</h5>
-							<p class="u-text u-text-5">121 Rock Sreet, 21 Avenue, New York, NY 92103-9000</p>
-						</div>
-					</div>
-					<div class="u-container-style u-list-item u-palette-5-dark-3 u-repeater-item u-list-item-3">
-						<div class="u-container-layout u-similar-container u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xl u-container-layout-4">
-							 
-							<h5 class="u-text u-text-6">Business Hours</h5>
-							<p class="u-text u-text-7">Mon – Fri …… 10 am – 8 pm, Sat, Sun ....… Closed</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+			{{ form_end(our_form) }}
+		
+	</div>
+</div>
 {% endblock %}
 {% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('css/contacto.css') }}">
+<link rel="stylesheet" href="{{ asset('css/contacto.css') }}">
 {% endblock %}

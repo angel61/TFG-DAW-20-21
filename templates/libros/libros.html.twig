@@ -11,16 +11,18 @@
 		{% for key, libro in libros %}
 			<div class="apartado-libro">
 				<div class="listado-libro {% if (key % 2) is not same as (0) %}listado-libro-reverso{% endif %} row">
-					<div class="libro-portada col-md-5">
+					<div class="container-xl">
+					<div class="libro-portada col-md-6 col-lg-5">
 						<img src="{{ asset('images/'~libro.urlPortada) }}" class="libro-img">
 					</div>
-					<div class="col-md-7 libro-texto">
+					<div class="col-lg-7 col-md-6 libro-texto">
 						<div>
-							<div>{{ libro.nombre }}</div>
+							<div class="h4 font-weight-bold libro-titulo pb-2 pb-mb-3">{{ libro.nombre }}</div>
 							<p>{{ libro.descripcionCorta }}</p>
-							<a class="boton-borde" href="{{ path('libros')~'/'~libro.id }}">Más información</a>
 						</div>
+							<a class="boton-borde" href="{{ path('libros')~'/'~libro.id }}">Más información</a>
 					</div>
+				</div>
 				</div>
 			</div>
 		{% endfor %}

@@ -7,27 +7,30 @@
 .apartado-libro {
     overflow: hidden;
     position:relative;
-    height: 100vh;
+    height: 80vh;
     width: 100%;
     border-radius: 4px;
 }
 
 .listado-libro {
     height: 100%;
-    display: inline-block;
+    color: #3a3a3a;
+}
+
+.listado-libro-reverso {
+    background-color: whitesmoke;
+}
+.listado-libro>div {
+    height: 100%;
     display: flex;
     flex-flow: row;
     justify-content: center;
     align-items: center;
-    background-color: #f0f1f500;
-    color: #3a3a3a;
-    z-index: -2;
-    padding: 10%;
+    padding: 7.5%;
 }
 
-.listado-libro-reverso {
+.listado-libro-reverso>div {
     flex-flow: row-reverse;
-    background-color: whitesmoke;
 }
 
 .libro-portada {
@@ -47,15 +50,14 @@
     width: 100%;
     display: flex;
     flex-flow: column;
-    justify-content: center;
-    align-items: center;
-    border: 4px solid whitesmoke;
+        justify-content: space-between;
+        align-items: center;
+    border: 3px solid #3a3a3a;
     padding: 5%;
 }
 
 
-.listado-libro-reverso>.libro-texto{
-    border: 4px solid #E4E3E9;
+.listado-libro-reverso>div>.libro-texto{
 }
 
 .libro-img {
@@ -66,10 +68,11 @@
     z-index: 10;
 }
 
-@media screen and (max-width:992px) {
+@media screen and (max-width:1024px) {
     
-    .listado-libro-reverso, .listado-libro {
-        height: 50vh;
+    .listado-libro-reverso>div, .listado-libro>div, .container-xl {
+        height: fit-content; 
+        gap: 2em;
     }
     .apartado-libro {
         height: fit-content;
@@ -78,6 +81,13 @@
     .contenedor-libros {
         gap: 1em;
     }
+    .libro-texto{
+        height:auto;
+        align-self: stretch;
+    }
+    .listado-libro>div {
+        padding: 10%;
+    }
 
 }
 
@@ -85,9 +95,9 @@
 
 
 @media screen and (max-width:721px) {
-    .listado-libro-reverso, .listado-libro {
-        height: fit-content;
+    .listado-libro-reverso>div, .listado-libro>div {
         flex-flow: column;
+        gap:1em;
     }
     .libro-portada {
         height: 16em;

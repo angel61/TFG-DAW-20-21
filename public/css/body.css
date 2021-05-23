@@ -6,7 +6,7 @@ body{
     color: #38373C;
 }
 .cabecera-pagina {
-    height: 55vh;
+    height: 40vh;
     width: 100%;
     overflow: hidden;
 }
@@ -45,6 +45,7 @@ body{
 .boton-borde{
     color: #38373C;
     border: 2px solid #38373C;
+    /* background-color: whitesmoke; */
     padding: .5em;
     transition:.2s ease;
 }
@@ -55,3 +56,53 @@ body{
     border: 2px solid #38373C;
     padding: .5em;
 }
+
+.input-borde {
+  width: 100%;
+  min-height: 3em;
+  border: none;
+  border: 3px solid transparent;
+  border-bottom: 2px solid #38373C;
+  outline-style: none;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  transition: .3s ease;
+}
+
+.input-borde:focus {
+  border: 3px solid #38373C;
+}
+.input-borde:focus::placeholder {
+  color: #38373C;
+}
+
+.link-p{
+  color: #38373cc7;
+  font-size: 1.5rem;
+}
+.link-p:hover{
+  color: #38373C;
+}
+
+/* 
+html {
+    font-size: 1rem;
+  }
+  
+  @include media-breakpoint-up(sm) {
+    html {
+      font-size: 1.2rem;
+    }
+  }
+  
+  @include media-breakpoint-up(md) {
+    html {
+      font-size: 1.4rem;
+    }
+  }
+  
+  @include media-breakpoint-up(lg) {
+    html {
+      font-size: 1.6rem;
+    }
+  } */

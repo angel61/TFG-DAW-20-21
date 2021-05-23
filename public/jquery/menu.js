@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    $('.icono').click(function () {
-        $('.icono').toggleClass('is-active');
+    $('.menu-toggle').click(function () {
+        $(this).toggleClass('open');
         $('.menu').toggleClass('is-active');
     });
 });

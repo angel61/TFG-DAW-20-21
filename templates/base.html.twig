@@ -10,30 +10,38 @@
 			{{ nombre_pagina|default('Error') }}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-																           and uncomment the following Encore helpers to start using Symfony UX #}
+																				           and uncomment the following Encore helpers to start using Symfony UX #}
 		<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/HeadernFooter.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/body.css') }}">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=League+Script&display=swap" rel="stylesheet">
 		{% block stylesheets %}
 			{#{{ encore_entry_link_tags('app') }}#}
 		{% endblock %}
 	</head>
 	<body>
-	{% set ruta_actual = app.request.attributes.get('_route') %}
+		{% set ruta_actual = app.request.attributes.get('_route') %}
 		<nav class="menu">
 			<ul>
-				<li><a href="{{ path('inicio') }}" {% if ruta_actual|default('inicio') == 'inicio' %} class="menu-activo"{% endif %}>{{ 'layout.inicio'|trans }}</a></li>
-				<li><a href="{{ path('sobreMi') }}" {% if ruta_actual == 'sobreMi' %} class="menu-activo"{% endif %}>{{ 'layout.sobremi'|trans }}</a></li>
-				<li><a href="{{ path('libros') }}" {% if ruta_actual == 'libros' or ruta_actual == 'libro' %} class="menu-activo"{% endif %}>{{ 'layout.libros'|trans }}</a></li>
-				<li><a href="{{ path('noticias') }}" {% if ruta_actual == 'noticias' %} class="menu-activo"{% endif %}>{{ 'layout.noticias'|trans }}</a></li>
-				<li><a href="{{ path('contacto') }}" {% if ruta_actual == 'contacto' %} class="menu-activo"{% endif %}>{{ 'layout.contacto'|trans }}</a></li>
+				<li><a href="{{path('inicio')}}"{% if ruta_actual|default('inicio') == 'inicio' %} class="menu-activo"{% endif %}>{{ 'layout.inicio'|trans }}</a></li>
+				<li><a href="{{path('sobreMi')}}"{% if ruta_actual == 'sobreMi' %} class="menu-activo"{% endif %}>{{ 'layout.sobremi'|trans }}</a></li>
+				<li><a href="{{path('libros')}}"{% if ruta_actual == 'libros' or ruta_actual == 'libro' %} class="menu-activo"{% endif %}>{{ 'layout.libros'|trans }}</a></li>
+				<li><a href="{{path('noticias')}}"{% if ruta_actual == 'noticias' %} class="menu-activo"{% endif %}>{{ 'layout.noticias'|trans }}</a></li>
+				<li><a href="{{path('contacto')}}"{% if ruta_actual == 'contacto' %} class="menu-activo"{% endif %}>{{ 'layout.contacto'|trans }}</a></li>
 			</ul>
 		</nav>
-		<div class="icono">
-			<div class="_layer -top"></div>
-			<div class="_layer -mid"></div>
-			<div class="_layer -bottom"></div>
-		</div>
+		<div class="menu-toggle">
+  <div class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="cross">
+    <span></span>
+    <span></span>
+  </div>
+</div>
 
 		{% if app.request.attributes.get('_route') != 'inicio' %}
 			<div class="cabecera-pagina">
@@ -51,6 +59,40 @@
 		<script src="{{ asset('jquery/jquery.min.js') }}"></script>
 		<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
 		<script src="{{ asset('jquery/menu.js') }}"></script>
+		<script src="https://kit.fontawesome.com/2bf8f3b8fb.js" crossorigin="anonymous"></script>
 		{% block javascripts %}{% endblock %}
+		<footer
+			class="text-center text-white">
+			<!-- Grid container -->
+			<div
+				class="container p-4 pb-0">
+				<!-- Section: Social media -->
+				<section
+					class="my-4">
+					<!-- Facebook -->
+					<a class="btn btn-outline-light btn-floating m-1 rounded-circle" href="#!" role="button">
+						<i class="fab fa-facebook-f"></i>
+					</a>
+
+					<!-- Google -->
+					<a class="btn btn-outline-light btn-floating m-1 rounded-circle" href="#!" role="button">
+						<i class="fab fa-google"></i>
+					</a>
+
+					<!-- Instagram -->
+					<a class="btn btn-outline-light btn-floating m-1 rounded-circle" href="#!" role="button">
+						<i class="fab fa-instagram"></i>
+					</a>
+				</section>
+				<!-- Section: Social media -->
+			</div>
+			<!-- Grid container -->
+
+			<!-- Copyright -->
+			<div class="text-center pb-5 h1 titulo-footer">
+				Cristina Palacios Hernaez
+			</div>
+			<!-- Copyright -->
+		</footer>
 	</body>
 </html>

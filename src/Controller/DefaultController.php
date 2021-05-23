@@ -66,9 +66,14 @@ class DefaultController extends AbstractController
 //         // actually executes the queries (i.e. the INSERT query)
 //         $entityManager->flush();
 
+$libro = $this->getDoctrine()
+->getRepository(Libros::class)
+->getLibroPortada(1);
+// var_dump($libro);
         return $this->render('default/inicio.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir') . '/..'),
-            'locale' => $request->getLocale() 
+            'locale' => $request->getLocale() ,
+            'libro'=>$libro
         ]);
     }
     /**

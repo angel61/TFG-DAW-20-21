@@ -6,4 +6,44 @@
 {% block title %}
 	{{ 'layout.inicio'|trans }}
 {% endblock %}
-{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/inicio.css') }}">{% endblock %}
+{% block body %}
+	<section id="hero" class="d-flex align-items-center vh-100">
+		<div class="container position-relative aos-init aos-animate" data-aos="fade-up" data-aos-delay="500">
+			<div class="display-4">Cristina Palacios Hernaez</div>
+			<h2>Escritora profesional</h2>
+			<a href="{{path('sobreMi')}}" class="btn-get-started link-p">Ver mi biografia</a>
+		</div>
+	</section>
+	<section class="apartado-libro ">
+		<div class="listado-libro listado-libro-reverso row">
+			<div class="container-xl flex-wrap">
+				<div class="libro-portada col-md-6 col-lg-5">
+					<img src="{{ asset('images/'~libro.urlPortada) }}" class="libro-img">
+				</div>
+				<div class="col-lg-7 col-md-6 libro-texto">
+					<div>
+						<div class="h4 font-weight-bold libro-titulo pb-2 pb-mb-3">{{ libro.nombre }}</div>
+						<p>{{ libro.descripcionCorta }}</p>
+					</div>
+					<a class="boton-borde" href="{{ path('libros')~'/'~libro.id }}">Más información</a>
+				</div>
+				<div class="enlace-apartado col-12 py-3">
+					<a class="link-p col-12 col-md-3 text-center" href="{{ path('libros') }}">Ver mas libros</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="d-flex flex-column justify-content-center align-items-center p-3 py-lg-5">
+		<div class="h2 font-weight-bold">
+			<a class="link-p " href="{{ path('contacto') }}">CONTACTO</a>
+		</div>
+		<div class="text-center">
+			Ponte en contacto conmigo y sigueme en mis redes sociales para estar al dia con mis publicaciones.
+		</div>
+	</section>
+
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/libros.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/inicio.css') }}">
+{% endblock %}
