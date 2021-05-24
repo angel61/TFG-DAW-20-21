@@ -8,21 +8,49 @@
 	{{ libro.nombre }}
 {% endblock %}
 {% block body %}
-			<div class="apartado-libro">
-				<div class="listado-libro row">
-					<div class="libro-portada col-md-6">
-						<img src="{{ asset('images/'~libro.urlPortada) }}" class="libro-img">
-					</div>
-					<div class="col-md-6 libro-texto">
-						<div>
-							<h1>{{ libro.nombre }}</h1>
-							<p>{{ libro.descripcionLarga|nl2br }}</p>
+	<div class="container py-3">
+		<div class="row py-4">
+			<div class="libro-portada col-md-6 d-flex justify-content-center">
+				<img src="{{ asset('images/'~libro.urlPortada) }}" class="libro-img col-10">
+			</div>
+			<div class="col-md-6 container p-4">
+				<div>
+					<div class="tabs">
+						<div class="tab-button-outer">
+							<ul id="tab-button">
+								<li>
+									<a href="#descripcion">Descripción</a>
+								</li>
+								<li>
+									<a href="#detalles">Detalles</a>
+								</li>
+							</ul>
+						</div>
+						<div class="tab-select-outer">
+							<select id="tab-select">
+								<option value="#descripcion">Descripción</option>
+								<option value="#detalles">Detalles</option>
+							</select>
+						</div>
+
+						<div id="descripcion" class="tab-contents">
+							<p>{{ libro.descripcionLarga|nl2br|nl2br }}</p>
+						</div>
+						<div id="detalles" class="tab-contents">
+							<h2>Tab 2</h2>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quos aliquam consequuntur, esse provident impedit minima porro! Laudantium laboriosam culpa quis fugiat ea, architecto velit ab, deserunt rem quibusdam voluptatum.</p>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
 {% endblock %}
 {% block stylesheets %}
 	{# <link rel="stylesheet" href="{{ asset('css/libros.css') }}"> #}
 	<link rel="stylesheet" href="{{ asset('css/libro.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{ asset('jquery/tabmenu.js') }}"></script>
 {% endblock %}

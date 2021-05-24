@@ -7,12 +7,13 @@
 	{{ 'layout.inicio'|trans }}
 {% endblock %}
 {% block body %}
-	<section id="hero" class="d-flex align-items-center vh-100">
-		<div class="container position-relative aos-init aos-animate" data-aos="fade-up" data-aos-delay="500">
+	<section class="d-flex align-items-center vh-100 cabecera-inicio">
+		<div class="container position-relative">
 			<div class="display-4">Cristina Palacios Hernaez</div>
 			<h2>Escritora profesional</h2>
-			<a href="{{path('sobreMi')}}" class="btn-get-started link-p">Ver mi biografia</a>
+			<a href="{{path('sobreMi')}}" class="btn-get-started link-p blanco">Ver mi biografia</a>
 		</div>
+					<img src="{{ asset('images/fondo-inicio.jpg') }}" class="position-absolute img-fluid w-100 h-100 fondo-inicio">
 	</section>
 	<section class="apartado-libro ">
 		<div class="listado-libro listado-libro-reverso row">

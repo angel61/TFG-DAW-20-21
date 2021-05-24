@@ -10,12 +10,12 @@
 			{{ nombre_pagina|default('Error') }}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-																				           and uncomment the following Encore helpers to start using Symfony UX #}
+																						           and uncomment the following Encore helpers to start using Symfony UX #}
 		<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/HeadernFooter.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/body.css') }}">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=League+Script&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=League+Script&display=swap" rel="stylesheet">
 		{% block stylesheets %}
 			{#{{ encore_entry_link_tags('app') }}#}
 		{% endblock %}
@@ -32,16 +32,16 @@
 			</ul>
 		</nav>
 		<div class="menu-toggle">
-  <div class="hamburger">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-  <div class="cross">
-    <span></span>
-    <span></span>
-  </div>
-</div>
+			<div class="hamburger">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="cross">
+				<span></span>
+				<span></span>
+			</div>
+		</div>
 
 		{% if app.request.attributes.get('_route') != 'inicio' %}
 			<div class="cabecera-pagina">
@@ -61,38 +61,25 @@
 		<script src="{{ asset('jquery/menu.js') }}"></script>
 		<script src="https://kit.fontawesome.com/2bf8f3b8fb.js" crossorigin="anonymous"></script>
 		{% block javascripts %}{% endblock %}
-		<footer
-			class="text-center text-white">
-			<!-- Grid container -->
-			<div
-				class="container p-4 pb-0">
-				<!-- Section: Social media -->
-				<section
-					class="my-4">
-					<!-- Facebook -->
+		<footer class="text-center text-white">
+			<div class="container p-4 pb-0">
+				<section class="my-4">
 					<a class="btn btn-outline-light btn-floating m-1 rounded-circle" href="#!" role="button">
 						<i class="fab fa-facebook-f"></i>
 					</a>
 
-					<!-- Google -->
 					<a class="btn btn-outline-light btn-floating m-1 rounded-circle" href="#!" role="button">
 						<i class="fab fa-google"></i>
 					</a>
 
-					<!-- Instagram -->
 					<a class="btn btn-outline-light btn-floating m-1 rounded-circle" href="#!" role="button">
 						<i class="fab fa-instagram"></i>
 					</a>
 				</section>
-				<!-- Section: Social media -->
 			</div>
-			<!-- Grid container -->
-
-			<!-- Copyright -->
 			<div class="text-center pb-5 h1 titulo-footer">
 				Cristina Palacios Hernaez
 			</div>
-			<!-- Copyright -->
 		</footer>
 	</body>
 </html>

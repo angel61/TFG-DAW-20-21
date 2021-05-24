@@ -84,6 +84,13 @@ body{
   color: #38373C;
 }
 
+.link-p.blanco{
+  color: #EEEFF3c7;
+}
+.link-p.blanco:hover{
+  color: #EEEFF3;
+}
+
 /* 
 html {
     font-size: 1rem;
