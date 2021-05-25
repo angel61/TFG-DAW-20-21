@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Noticias;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,8 +24,11 @@ class NoticiasController extends AbstractController
      */
     public function noticia($id): Response
     {
-        return $this->render('prueba/inicio.html.twig', [
-            "texto"=>"noticia ".$id
+        $entityManager = $this->getDoctrine()->getManager();
+        $noticia=$entityManager->getRepository(Noticias::class)->find($id);
+
+        return $this->render('noticias/noticia.html.twig', [
+            "noticia"=>$noticia
         ]);
     }
 }

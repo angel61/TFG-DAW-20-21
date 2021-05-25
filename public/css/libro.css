@@ -33,7 +33,7 @@
   display: block;
   padding: .5em;
   background: #eee;
-  border: 1px solid #ddd;
+  border: 3px solid #38373C;
   text-align: center;
   color: #000;
   text-decoration: none;
@@ -43,14 +43,19 @@
   border-left: none;
 }
 
-#tab-button li a:hover, #tab-button .is-active a {
+ #tab-button .is-active a {
   border-bottom-color: transparent;
+  background: #fff;
+}
+#tab-button li a:hover {
   background: #fff;
 }
 
 .tab-contents {
   padding: .5em 2em 1em;
-  border: 1px solid #ddd;
+  border: 3px solid #38373C;
+  border-top:0;
+  background-color: white;
 }
 
 .tab-button-outer {
