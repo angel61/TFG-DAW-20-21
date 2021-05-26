@@ -48,8 +48,9 @@
 				<div class="cabecera-imagen">
 					<img src="{{ cabecera_imagen|default(asset('images/cabecera.jpg')) }}" class="img-fluid" alt="Responsive image">
 				</div>
-				<div class="cabecera-titulo"> {% block cabecera %}{% endblock %}
+				<div class="cabecera-titulo"> {% block cabecera %}
 					<h2 class="text-center mx-2 mx-md-0">{{ nombre_pagina|default('Error') }}</h2>
+					{% endblock %}
 				</div>
 			</div>
 		{% endif %}

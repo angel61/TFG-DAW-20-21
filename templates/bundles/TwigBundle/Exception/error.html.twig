@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>Page not found</h1>
+
+    <p>
+        misspelling or <a href="{{ path('inicio') }}">return to the homepage</a>.
+    </p>
+    {{exception.message}}
+{% endblock %}

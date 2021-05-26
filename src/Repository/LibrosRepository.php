@@ -30,7 +30,7 @@ class LibrosRepository extends ServiceEntityRepository
         $query = $entityManager->createQuery(
             'SELECT l
             FROM App\Entity\Libros l
-            WHERE l.autor  = :autor
+            WHERE l.autor  = :autor AND l.activo=1
             ORDER BY l.id ASC'
         )->setParameter('autor', $autor);
 
@@ -49,7 +49,7 @@ class LibrosRepository extends ServiceEntityRepository
         $query = $entityManager->createQuery(
             'SELECT l
             FROM App\Entity\Libros l
-            WHERE l.autor  = :autor
+            WHERE l.autor  = :autor AND l.activo=1
             ORDER BY l.fecha_publicacion DESC'
         )
         ->setParameter('autor', $autor)

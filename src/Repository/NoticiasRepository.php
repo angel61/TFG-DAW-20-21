@@ -20,6 +20,43 @@ class NoticiasRepository extends ServiceEntityRepository
     }
 
     // /**
+    //  * @return Libros Returns a Libros objects
+    //  */
+    
+    public function getNoticiaActiva($id)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT n
+            FROM App\Entity\Noticias n
+            WHERE n.id  = :id AND n.activa=1'
+        )
+        ->setParameter('id', $id)
+        ->setMaxResults(1);
+
+        return $query->getOneOrNullResult();
+    }
+
+    // /**
+    //  * @return Libros[] Returns an array of Libros objects
+    //  */
+    
+    public function getNoticiasActivas()
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT n
+            FROM App\Entity\Noticias n
+            WHERE n.activa=1'
+        );
+
+        // returns an array of Product objects
+        return $query->getResult();
+    }
+
+    // /**
     //  * @return Noticias[] Returns an array of Noticias objects
     //  */
     /*

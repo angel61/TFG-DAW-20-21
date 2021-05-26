@@ -7,6 +7,32 @@
 	{{ 'layout.noticias'|trans }}
 {% endblock %}
 {% block body %}
+	{% if noticias|length > 0 %}
+		<div class="container d-flex flex-column flex-md-row justify-content-center py-4">
+			{% for filaNoticia in noticias|batch(3, false) %}
+				{% for noticia in filaNoticia %}
+					<div class="col-lg-3 mb-4 mb-md-0 m-md-3 d-flex flex-column text-center">
+						{% if noticia %}
+							<div class="pb-3">
+								<a href="{{ path('noticias')~'/'~noticia.id }}">
+									<img src="{{ asset('images/'~noticia.urlImagen) }}" class="img-fluid">
+								</a>
+							</div>
+							<div class="pb-3">
+								{{ noticia.fecha|date("d/m/Y", "Europe/Madrid") }}
+							</div>
+							<div class="h4 font-weight-bold">
+								<a class="link-p" href="{{ path('noticias')~'/'~noticia.id }}">
+									{{ noticia.titulo }}
+								</a>
+							</div>
+						{% endif %}
+					</div>
+				{% endfor %}
+			{% endfor %}
+		</div>
+		{% else %}
+	{% endif %}
 {% endblock %}
 {% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/noticias.css') }}">
 {% endblock %}

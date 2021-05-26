@@ -6,12 +6,14 @@ body{
     color: #38373C;
 }
 .cabecera-pagina {
+  position: relative;
     height: 40vh;
     width: 100%;
     overflow: hidden;
 }
 
 .cabecera-imagen {
+  position: absolute;
     width: 100%;
     height: 100%;
     
@@ -25,13 +27,14 @@ body{
     
     object-fit: cover;
     object-position: center;
+    filter: brightness(0.7);
     z-index: -1;
 }
 
 .cabecera-titulo {
-    position: relative;
+    /* position: relative;
     top: -100%;
-    left: 0;
+    left: 0; */
     height: 100%;
     width: 100%;
     display: flex;

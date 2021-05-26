@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Autores;
 use App\Entity\Libros;
 use App\Repository\LibrosRepository;
+use Exception;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -35,6 +36,10 @@ class LibrosController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
         $libro=$entityManager->getRepository(Libros::class)->find($id);
+        
+
+        if($libro===null)        
+        throw(new Exception("Pagina no encontrada",404));
 
         return $this->render('libros/libro.html.twig', [
             "libro" => $libro
