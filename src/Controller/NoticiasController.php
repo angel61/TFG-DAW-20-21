@@ -17,12 +17,16 @@ class NoticiasController extends AbstractController
      */
     public function noticias(TranslatorInterface $translator): Response
     {
+        $noticia = $this->getDoctrine()
+            ->getRepository(Noticias::class)
+            ->getNoticiaImportante();
 
         $noticias = $this->getDoctrine()
             ->getRepository(Noticias::class)
             ->getNoticiasActivas();
 
         return $this->render('noticias/noticias.html.twig', [
+            'noticiaPortada' => $noticia,
             'noticias' => $noticias
         ]);
     }

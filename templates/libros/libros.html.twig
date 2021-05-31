@@ -14,11 +14,11 @@
 					<div class="listado-libro {% if (key % 2) is not same as (0) %}listado-libro-reverso{% endif %} row">
 						<div class="container-xl">
 							<div class="libro-portada col-md-6 col-lg-5">
-								<img src="{{ asset('images/'~libro.urlPortada) }}" class="libro-img">
+								<img src="{{ asset('images/libros/'~libro.urlPortada) }}" class="libro-img">
 							</div>
 							<div class="col-lg-7 col-md-6 libro-texto">
 								<div>
-									<div class="h4 font-weight-bold libro-titulo pb-2 pb-mb-3">{{ libro.nombre }}</div>
+									<div class="h4 font-weight-bold libro-titulo pb-2 pb-mb-3 titulo-texto">{{ libro.nombre }}</div>
 									<p>{{ libro.descripcionCorta }}</p>
 								</div>
 								<a class="boton-borde" href="{{ path('libros')~'/'~libro.id }}">Más información</a>
@@ -28,8 +28,30 @@
 				</div>
 			{% endfor %}
 		</div>
-	{% else %}
+		{% else %}
 	{% endif %}
+	<div class="container d-flex flex-column flex-md-row flex-md-wrap justify-content-center py-4">
+		<div class="my-5 h2 col-12 text-center titulo-texto">Libros recomendados</div>
+		<hr class="col-11 col-md-9">
+		{% for filaNoticia in librosRecomendados|batch(3, false) %}
+			{% for noticia in filaNoticia %}
+				<div class="col-md-4 col-lg-3 mb-5 m-lg-3 d-flex flex-column justify-content-start align-items-center text-center">
+					{% if noticia %}
+						<div class="pb-3 col-9">
+							<a href="{{ path('libros')~'/'~noticia.id }}">
+								<img src="{{ asset('images/libros/'~noticia.urlPortada) }}" class="img-fluid">
+							</a>
+						</div>
+						<div class="font-weight-light">
+							<a class="link-p" href="{{ path('libros')~'/'~noticia.id }}">
+								{{ noticia.nombre }}
+							</a>
+						</div>
+					{% endif %}
+				</div>
+			{% endfor %}
+		{% endfor %}
+	</div>
 {% endblock %}
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/libros.css') }}">

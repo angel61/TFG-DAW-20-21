@@ -16,6 +16,8 @@
 		<link rel="stylesheet" href="{{ asset('css/body.css') }}">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=League+Script&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
 		{% block stylesheets %}
 			{#{{ encore_entry_link_tags('app') }}#}
 		{% endblock %}
@@ -49,7 +51,7 @@
 					<img src="{{ cabecera_imagen|default(asset('images/cabecera.jpg')) }}" class="img-fluid" alt="Responsive image">
 				</div>
 				<div class="cabecera-titulo"> {% block cabecera %}
-					<h2 class="text-center mx-2 mx-md-0">{{ nombre_pagina|default('Error') }}</h2>
+					<h2 class="text-center mx-2 mx-md-0 titulo-texto">{{ nombre_pagina|default('Error') }}</h2>
 					{% endblock %}
 				</div>
 			</div>

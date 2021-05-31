@@ -19,12 +19,17 @@ class LibrosController extends AbstractController
      */
     public function libros(): Response
     {
+        $idAutor=1;
         $libros = $this->getDoctrine()
             ->getRepository(Libros::class)
-            ->getLibrosAutor(1);
+            ->getLibrosAutor($idAutor);
+        $librosRecomendados = $this->getDoctrine()
+            ->getRepository(Libros::class)
+            ->getLibrosRecomendados($idAutor);
 
         return $this->render('libros/libros.html.twig', [
-            'libros' => $libros
+            'libros' => $libros,
+            'librosRecomendados' => $librosRecomendados
         ]);
     }
 
@@ -35,11 +40,11 @@ class LibrosController extends AbstractController
     public function libro($id): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $libro=$entityManager->getRepository(Libros::class)->find($id);
-        
+        $libro = $entityManager->getRepository(Libros::class)->find($id);
 
-        if($libro===null)        
-        throw(new Exception("Pagina no encontrada",404));
+
+        if ($libro === null)
+            throw (new Exception("Pagina no encontrada", 404));
 
         return $this->render('libros/libro.html.twig', [
             "libro" => $libro

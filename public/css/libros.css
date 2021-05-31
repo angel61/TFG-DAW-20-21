@@ -1,3 +1,9 @@
+
+hr {
+    border-top: 2px solid #3a3a3a;
+    height: 2px;
+}
+
 .contenedor-libros {
     display: flex;
     flex-flow: column;

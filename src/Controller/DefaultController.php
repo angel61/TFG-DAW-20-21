@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Autores;
 use App\Entity\Editoriales;
 use App\Entity\Libros;
+use App\Entity\Noticias;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -70,11 +71,16 @@ class DefaultController extends AbstractController
         $libro = $this->getDoctrine()
             ->getRepository(Libros::class)
             ->getLibroPortada(1);
+            
+        $noticia = $this->getDoctrine()
+        ->getRepository(Noticias::class)
+        ->getNoticiasActivas();
         // var_dump($libro);
         return $this->render('default/inicio.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir') . '/..'),
             'locale' => $request->getLocale(),
-            'libro' => $libro
+            'libro' => $libro,
+            'noticias' => $noticia
         ]);
     }
     /**

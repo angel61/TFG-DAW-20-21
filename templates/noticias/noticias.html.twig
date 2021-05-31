@@ -8,14 +8,35 @@
 {% endblock %}
 {% block body %}
 	{% if noticias|length > 0 %}
-		<div class="container d-flex flex-column flex-md-row justify-content-center py-4">
+		<div class="bg-light">
+			<div class="container d-flex flex-wrap justify-content-around py-5">
+				<div class="pb-3 col-md-6 overflow-hidden text-center">
+						<img src="{{ asset('images/noticias/'~noticiaPortada.urlImagen) }}" class="col-12" style="object-position:center;">
+				</div>
+				<div class="col-md-6">
+					<div class="pb-3">
+						{{ noticiaPortada.fecha|date("d/m/Y", "Europe/Madrid") }}
+					</div>
+					<div class="h4 font-weight-bold pb-3">
+						<a class="link-p titulo-texto" href="{{ path('noticias')~'/'~noticiaPortada.id }}">
+							{{ noticiaPortada.titulo }}
+						</a>
+					</div>
+					<div class="pb-3">
+						<p>{{ noticiaPortada.descripcion }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container d-flex flex-column flex-md-row flex-md-wrap justify-content-center py-4">
+			<div class="h2 col-12 text-center titulo-texto">Ultimas noticias</div>
 			{% for filaNoticia in noticias|batch(3, false) %}
 				{% for noticia in filaNoticia %}
-					<div class="col-lg-3 mb-4 mb-md-0 m-md-3 d-flex flex-column text-center">
+					<div class="col-md-4 col-lg-3 mb-4 mb-md-0 m-lg-3 d-flex flex-column text-center">
 						{% if noticia %}
 							<div class="pb-3">
 								<a href="{{ path('noticias')~'/'~noticia.id }}">
-									<img src="{{ asset('images/'~noticia.urlImagen) }}" class="img-fluid">
+									<img src="{{ asset('images/noticias/'~noticia.urlImagen) }}" class="img-fluid">
 								</a>
 							</div>
 							<div class="pb-3">

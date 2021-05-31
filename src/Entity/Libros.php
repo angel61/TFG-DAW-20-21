@@ -111,12 +111,6 @@ class Libros
     private $categorias;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Autores::class, inversedBy="libros")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $autor;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Editoriales::class, inversedBy="libros")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -127,9 +121,15 @@ class Libros
      */
     private $url_portada;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=autores::class, inversedBy="libros")
+     */
+    private $autores;
+
     public function __construct()
     {
         $this->categorias = new ArrayCollection();
+        $this->autores = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -369,18 +369,6 @@ class Libros
         return $this;
     }
 
-    public function getAutor(): ?Autores
-    {
-        return $this->autor;
-    }
-
-    public function setAutor(?Autores $autor): self
-    {
-        $this->autor = $autor;
-
-        return $this;
-    }
-
     public function getEditorial(): ?Editoriales
     {
         return $this->editorial;
@@ -405,4 +393,27 @@ class Libros
         return $this;
     }
 
+    /**
+     * @return Collection|Autores[]
+     */
+    public function getAutores(): Collection
+    {
+        return $this->autores;
+    }
+
+    public function addAutore(Autores $autore): self
+    {
+        if (!$this->autores->contains($autore)) {
+            $this->autores[] = $autore;
+        }
+
+        return $this;
+    }
+
+    public function removeAutore(Autores $autore): self
+    {
+        $this->autores->removeElement($autore);
+
+        return $this;
+    }
 }

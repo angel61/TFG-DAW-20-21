@@ -5,6 +5,13 @@ body{
     width: 100%;
     color: #38373C;
 }
+
+.titulo-texto{
+  font-family: 'Libre Baskerville', serif;
+}
+.titulo-especial{
+}
+
 .cabecera-pagina {
   position: relative;
     height: 40vh;

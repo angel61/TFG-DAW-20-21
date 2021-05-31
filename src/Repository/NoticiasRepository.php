@@ -38,6 +38,22 @@ class NoticiasRepository extends ServiceEntityRepository
         return $query->getOneOrNullResult();
     }
 
+    public function getNoticiaImportante()
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT n
+            FROM App\Entity\Noticias n
+            WHERE n.activa=1
+            ORDER BY n.importancia DESC'
+        )
+        ->setParameter('id', $id)
+        ->setMaxResults(1);
+
+        return $query->getOneOrNullResult();
+    }
+
     // /**
     //  * @return Libros[] Returns an array of Libros objects
     //  */
@@ -49,7 +65,8 @@ class NoticiasRepository extends ServiceEntityRepository
         $query = $entityManager->createQuery(
             'SELECT n
             FROM App\Entity\Noticias n
-            WHERE n.activa=1'
+            WHERE n.activa=1
+            ORDER BY n.fecha DESC'
         );
 
         // returns an array of Product objects

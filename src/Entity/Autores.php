@@ -30,7 +30,7 @@ class Autores
     private $apellidos;
 
     /**
-     * @ORM\OneToMany(targetEntity=Libros::class, mappedBy="autor")
+     * @ORM\ManyToMany(targetEntity=Libros::class, mappedBy="autores")
      */
     private $libros;
 
@@ -81,7 +81,7 @@ class Autores
     {
         if (!$this->libros->contains($libro)) {
             $this->libros[] = $libro;
-            $libro->setAutor($this);
+            $libro->addAutore($this);
         }
 
         return $this;
@@ -90,10 +90,7 @@ class Autores
     public function removeLibro(Libros $libro): self
     {
         if ($this->libros->removeElement($libro)) {
-            // set the owning side to null (unless already changed)
-            if ($libro->getAutor() === $this) {
-                $libro->setAutor(null);
-            }
+            $libro->removeAutore($this);
         }
 
         return $this;

@@ -30,7 +30,8 @@ class LibrosRepository extends ServiceEntityRepository
         $query = $entityManager->createQuery(
             'SELECT l
             FROM App\Entity\Libros l
-            WHERE l.autor  = :autor AND l.activo=1
+            LEFT JOIN l.autores a
+            WHERE a.id  = :autor AND l.activo=1
             ORDER BY l.id ASC'
         )->setParameter('autor', $autor);
 
@@ -49,7 +50,8 @@ class LibrosRepository extends ServiceEntityRepository
         $query = $entityManager->createQuery(
             'SELECT l
             FROM App\Entity\Libros l
-            WHERE l.autor  = :autor AND l.activo=1
+            LEFT JOIN l.autores a
+            WHERE a.id = :autor AND l.activo=1
             ORDER BY l.fecha_publicacion DESC'
         )
         ->setParameter('autor', $autor)
@@ -57,17 +59,24 @@ class LibrosRepository extends ServiceEntityRepository
 
         return $query->getOneOrNullResult();
     }
-   
 
-    /*
-    public function findOneBySomeField($value): ?Libros
+    // /**
+    //  * @return Libros[] Returns an array of Libros objects
+    //  */
+    
+    public function getLibrosRecomendados($autor)
     {
-        return $this->createQueryBuilder('l')
-            ->andWhere('l.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT l
+            FROM App\Entity\Libros l
+            LEFT JOIN l.autores a
+            WHERE a.id != :autor AND l.activo=1
+            ORDER BY l.id DESC'
+        )->setParameter('autor', $autor);
+
+        // returns an array of Product objects
+        return $query->getResult();
     }
-    */
 }
