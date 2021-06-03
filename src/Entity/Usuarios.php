@@ -4,11 +4,14 @@ namespace App\Entity;
 
 use App\Repository\UsuariosRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UsuariosRepository::class)
+ * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  */
-class Usuarios
+class Usuarios implements UserInterface
 {
     /**
      * @ORM\Id
@@ -18,58 +21,94 @@ class Usuarios
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $usuario;
+    private $username;
 
     /**
-     * @ORM\Column(type="string", length=200)
+     * @ORM\Column(type="json")
      */
-    private $clave;
+    private $roles = [];
 
     /**
-     * @ORM\Column(type="string", length=25)
+     * @var string The hashed password
+     * @ORM\Column(type="string")
      */
-    private $tipo;
+    private $password;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUsuario(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
     {
-        return $this->usuario;
+        return (string) $this->username;
     }
 
-    public function setUsuario(string $usuario): self
+    public function setUsername(string $username): self
     {
-        $this->usuario = $usuario;
+        $this->username = $username;
 
         return $this;
     }
 
-    public function getClave(): ?string
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        return $this->clave;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
-    public function setClave(string $clave): self
+    public function setRoles(array $roles): self
     {
-        $this->clave = $clave;
+        $this->roles = $roles;
 
         return $this;
     }
 
-    public function getTipo(): ?string
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
     {
-        return $this->tipo;
+        return $this->password;
     }
 
-    public function setTipo(string $tipo): self
+    public function setPassword(string $password): self
     {
-        $this->tipo = $tipo;
+        $this->password = $password;
 
         return $this;
+    }
+
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }

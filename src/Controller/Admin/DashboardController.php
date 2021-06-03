@@ -2,6 +2,8 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Autores;
+use App\Entity\Editoriales;
 use App\Entity\Libros;
 use App\Entity\Noticias;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -33,7 +35,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
 
         yield MenuItem::section('Blog');
-        yield MenuItem::linkToRoute('Categories', 'fa fa-tags', 'panel1');
+        yield MenuItem::linkToCrud('Autores', 'fa fa-tags', Autores::class);
+        yield MenuItem::linkToCrud('Editoriales', 'fa fa-tags', Editoriales::class);
+        yield MenuItem::linkToCrud('Libros', 'fa fa-tags', Libros::class);
         yield MenuItem::linkToRoute ('Blog Posts', 'fa fa-file-text', 'panel2');
     }
 }

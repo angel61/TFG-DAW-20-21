@@ -3,9 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\LibrosRepository;
+use DateTime;
+use DateTimeZone;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * @ORM\Entity(repositoryClass=LibrosRepository::class)
@@ -31,12 +34,12 @@ class Libros
     private $url_compra;
 
     /**
-     * @ORM\Column(type="string", length=13)
+     * @ORM\Column(type="string", length=18)
      */
     private $isbn;
 
     /**
-     * @ORM\Column(type="string", length=13)
+     * @ORM\Column(type="string", length=18, options={"default": 0})
      */
     private $ean;
 
@@ -73,7 +76,7 @@ class Libros
     /**
      * @ORM\Column(type="boolean")
      */
-    private $destacado;
+    private $destacado=0;
 
     /**
      * @ORM\Column(type="float")
@@ -83,7 +86,7 @@ class Libros
     /**
      * @ORM\Column(type="boolean")
      */
-    private $activo;
+    private $activo=0;
 
     /**
      * @ORM\Column(type="date")
@@ -98,12 +101,12 @@ class Libros
     /**
      * @ORM\Column(type="decimal", precision=5, scale=2)
      */
-    private $descuento;
+    private $descuento=0;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $top_ventas;
+    private $top_ventas=0;
 
     /**
      * @ORM\ManyToMany(targetEntity=Categorias::class, mappedBy="id_libro")
@@ -112,17 +115,16 @@ class Libros
 
     /**
      * @ORM\ManyToOne(targetEntity=Editoriales::class, inversedBy="libros")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $editorial;
 
     /**
      * @ORM\Column(type="string", length=200)
      */
-    private $url_portada;
+    private $url_portada='default.jpg';
 
     /**
-     * @ORM\ManyToMany(targetEntity=autores::class, inversedBy="libros")
+     * @ORM\ManyToMany(targetEntity=Autores::class, inversedBy="libros")
      */
     private $autores;
 
@@ -130,6 +132,8 @@ class Libros
     {
         $this->categorias = new ArrayCollection();
         $this->autores = new ArrayCollection();
+        $this->inicio_descuento= date_create('now');
+        $this->fin_descuento= date_create('now');
     }
 
     public function getId(): ?int
@@ -258,9 +262,9 @@ class Libros
         return $this;
     }
 
-    public function getDestacado(): ?int
+    public function getDestacado(): ?bool
     {
-        return $this->destacado;
+        return boolval($this->destacado);
     }
 
     public function setDestacado(int $destacado): self
@@ -282,9 +286,9 @@ class Libros
         return $this;
     }
 
-    public function getActivo(): ?int
+    public function getActivo(): ?bool
     {
-        return $this->activo;
+        return boolval($this->activo);
     }
 
     public function setActivo(int $activo): self
@@ -330,9 +334,9 @@ class Libros
         return $this;
     }
 
-    public function getTopVentas(): ?int
+    public function getTopVentas(): ?bool
     {
-        return $this->top_ventas;
+        return boolval($this->top_ventas);
     }
 
     public function setTopVentas(int $top_ventas): self
