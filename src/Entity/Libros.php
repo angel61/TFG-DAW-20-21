@@ -39,7 +39,7 @@ class Libros
     private $isbn;
 
     /**
-     * @ORM\Column(type="string", length=18, options={"default": 0})
+     * @ORM\Column(type="string", length=18, nullable=true)
      */
     private $ean;
 
@@ -69,14 +69,14 @@ class Libros
     private $fecha_publicacion;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=30, nullable=true)
      */
     private $idioma;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $destacado=0;
+    private $destacado = 0;
 
     /**
      * @ORM\Column(type="float")
@@ -86,27 +86,27 @@ class Libros
     /**
      * @ORM\Column(type="boolean")
      */
-    private $activo=0;
+    private $activo = 0;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $inicio_descuento;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $fin_descuento;
 
     /**
-     * @ORM\Column(type="decimal", precision=5, scale=2)
+     * @ORM\Column(type="decimal", precision=5, scale=2, nullable=true)
      */
-    private $descuento=0;
+    private $descuento;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $top_ventas=0;
+    private $top_ventas = 0;
 
     /**
      * @ORM\ManyToMany(targetEntity=Categorias::class, mappedBy="id_libro")
@@ -121,7 +121,7 @@ class Libros
     /**
      * @ORM\Column(type="string", length=200)
      */
-    private $url_portada='default.jpg';
+    private $url_portada = 'default.jpg';
 
     /**
      * @ORM\ManyToMany(targetEntity=Autores::class, inversedBy="libros")
@@ -132,8 +132,6 @@ class Libros
     {
         $this->categorias = new ArrayCollection();
         $this->autores = new ArrayCollection();
-        $this->inicio_descuento= date_create('now');
-        $this->fin_descuento= date_create('now');
     }
 
     public function getId(): ?int
@@ -183,7 +181,7 @@ class Libros
         return $this->ean;
     }
 
-    public function setEan(string $ean): self
+    public function setEan(?string $ean): self
     {
         $this->ean = $ean;
 
@@ -303,7 +301,7 @@ class Libros
         return $this->inicio_descuento;
     }
 
-    public function setInicioDescuento(\DateTimeInterface $inicio_descuento): self
+    public function setInicioDescuento(?\DateTimeInterface $inicio_descuento): self
     {
         $this->inicio_descuento = $inicio_descuento;
 
@@ -315,7 +313,7 @@ class Libros
         return $this->fin_descuento;
     }
 
-    public function setFinDescuento(\DateTimeInterface $fin_descuento): self
+    public function setFinDescuento(?\DateTimeInterface $fin_descuento): self
     {
         $this->fin_descuento = $fin_descuento;
 
@@ -327,7 +325,7 @@ class Libros
         return $this->descuento;
     }
 
-    public function setDescuento(string $descuento): self
+    public function setDescuento(?string $descuento): self
     {
         $this->descuento = $descuento;
 

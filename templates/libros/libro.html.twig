@@ -25,7 +25,7 @@
 	{# <div class="container py-3">
 			<div class="row py-4">
 				<div class="libro-portada col-md-5 d-flex justify-content-center">
-					<img src="{{ asset('images/'~libro.urlPortada) }}" class="libro-img col-10">
+					<img src="{{ asset('images/libros/'~libro.urlPortada) }}" class="libro-img col-10">
 				</div>
 				<div class="col-md-7 container px-4">
 					<div>
@@ -48,7 +48,7 @@
 							</div>
 	
 							<div id="descripcion" class="tab-contents">
-								<p>{{ libro.descripcionLarga|nl2br|nl2br }}</p>
+								<p>{{ libro.descripcionLarga|raw }}</p>
 							</div>
 							<div id="detalles" class="tab-contents">
 								<h2>Tab 2</h2>
@@ -62,9 +62,9 @@
 
 	<div class="container d-flex justify-content-center">
 		<div class="col-lg-8 col-md-11 contenedor-noticia">
-			<div class="d-flex justify-content-center"><img src="{{ asset('images/'~libro.urlPortada) }}" class="img-fluid col-6 pb-4" alt="Responsive image"></div>
+			<div class="d-flex justify-content-center"><img src="{{ asset('images/libros/'~libro.urlPortada) }}" class="img-fluid col-6 pb-4" alt="Responsive image"></div>
 			<div>
-				<p>{{ libro.descripcionLarga|nl2br }}</p>
+				<p>{{ libro.descripcionLarga|raw }}</p>
 			</div>
 		</div>
 	</div>

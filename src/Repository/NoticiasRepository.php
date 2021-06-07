@@ -48,7 +48,6 @@ class NoticiasRepository extends ServiceEntityRepository
             WHERE n.activa=1
             ORDER BY n.importancia DESC'
         )
-        ->setParameter('id', $id)
         ->setMaxResults(1);
 
         return $query->getOneOrNullResult();

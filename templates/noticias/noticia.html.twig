@@ -13,7 +13,7 @@
 	<div class="container d-flex justify-content-center">
 		<div class="col-lg-8 col-md-11 contenedor-noticia">
 			<div><img src="{{ asset('images/noticias/'~noticia.urlImagen) }}" class="img-fluid pb-4" alt="Responsive image"></div>
-			<div><p>{{ noticia.texto|nl2br }}</p></div>
+			<div><p>{{ noticia.texto|raw }}</p></div>
 		</div>
 	</div>
 {% endblock %}

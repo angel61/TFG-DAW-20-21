@@ -36,6 +36,11 @@ class Usuarios implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $activo;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -66,6 +71,9 @@ class Usuarios implements UserInterface
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
+
+        if(!$this->getActivo())
+            return array();
 
         return array_unique($roles);
     }
@@ -110,5 +118,17 @@ class Usuarios implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getActivo(): ?bool
+    {
+        return $this->activo;
+    }
+
+    public function setActivo(bool $activo): self
+    {
+        $this->activo = $activo;
+
+        return $this;
     }
 }

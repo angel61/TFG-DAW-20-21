@@ -24,7 +24,7 @@
 				<div class="col-lg-7 col-md-6 libro-texto">
 					<div>
 						<div class="h4 font-weight-bold libro-titulo pb-2 pb-mb-3 titulo-texto">{{ libro.nombre }}</div>
-						<p>{{ libro.descripcionCorta }}</p>
+						<p>{{ libro.descripcionCorta|raw }}</p>
 					</div>
 					<a class="boton-borde" href="{{ path('libros')~'/'~libro.id }}">Más información</a>
 				</div>
