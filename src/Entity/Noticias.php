@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\NoticiasRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -51,6 +53,16 @@ class Noticias
      * @ORM\Column(type="string", length=100)
      */
     private $url_imagen;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comentarios::class, mappedBy="noticia")
+     */
+    private $comentarios;
+
+    public function __construct()
+    {
+        $this->comentarios = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -137,6 +149,36 @@ class Noticias
     public function setUrlImagen(string $url_imagen): self
     {
         $this->url_imagen = $url_imagen;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comentarios[]
+     */
+    public function getComentarios(): Collection
+    {
+        return $this->comentarios;
+    }
+
+    public function addComentario(Comentarios $comentario): self
+    {
+        if (!$this->comentarios->contains($comentario)) {
+            $this->comentarios[] = $comentario;
+            $comentario->setNoticia($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComentario(Comentarios $comentario): self
+    {
+        if ($this->comentarios->removeElement($comentario)) {
+            // set the owning side to null (unless already changed)
+            if ($comentario->getNoticia() === $this) {
+                $comentario->setNoticia(null);
+            }
+        }
 
         return $this;
     }

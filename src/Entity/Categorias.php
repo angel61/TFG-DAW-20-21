@@ -20,9 +20,9 @@ class Categorias
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Libros::class, inversedBy="categorias")
+     * @ORM\ManyToMany(targetEntity=Libros::class, mappedBy="categorias")
      */
-    private $id_libro;
+    private $libros;
 
     /**
      * @ORM\Column(type="string", length=100)
@@ -31,7 +31,7 @@ class Categorias
 
     public function __construct()
     {
-        $this->id_libro = new ArrayCollection();
+        $this->libros = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -42,23 +42,23 @@ class Categorias
     /**
      * @return Collection|Libros[]
      */
-    public function getIdLibro(): Collection
+    public function getLibros(): Collection
     {
-        return $this->id_libro;
+        return $this->libros;
     }
 
-    public function addIdLibro(Libros $idLibro): self
+    public function addLibros(Libros $libros): self
     {
-        if (!$this->id_libro->contains($idLibro)) {
-            $this->id_libro[] = $idLibro;
+        if (!$this->libros->contains($libros)) {
+            $this->libros[] = $libros;
         }
 
         return $this;
     }
 
-    public function removeIdLibro(Libros $idLibro): self
+    public function removeLibros(Libros $libros): self
     {
-        $this->id_libro->removeElement($idLibro);
+        $this->libros->removeElement($libros);
 
         return $this;
     }

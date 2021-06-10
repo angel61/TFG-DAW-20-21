@@ -35,6 +35,16 @@ class UsuariosRepository extends ServiceEntityRepository implements PasswordUpgr
         $this->_em->persist($user);
         $this->_em->flush();
     }
+    public function getPassword($id)
+    {
+        return $this->createQueryBuilder('u')
+            ->select('u.password')
+            // ->from('Usuarios','u')
+            ->andWhere('u.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult()[0]['id'];
+    }
 
     // /**
     //  * @return Usuarios[] Returns an array of Usuarios objects

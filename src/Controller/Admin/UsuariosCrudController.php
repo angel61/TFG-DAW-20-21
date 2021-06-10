@@ -7,6 +7,7 @@ use App\Field\UserRoleField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -25,8 +26,8 @@ class UsuariosCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('username'),
             BooleanField::new('activo'),
-            ArrayField::new('roles'),
-            TextField::new('password')->hideOnIndex()->setFormType(PasswordType::class),
+            ChoiceField::new('true_roles','Roles')->setChoices(['Admin'=>'ROLE_ADMIN','Usuario'=>'ROLE_USER'])->allowMultipleChoices(),
+            TextField::new('password')->hideOnIndex()->setFormType(PasswordType::class)->setRequired(false),
         ];
     }
    

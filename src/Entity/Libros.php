@@ -109,7 +109,7 @@ class Libros
     private $top_ventas = 0;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Categorias::class, mappedBy="id_libro")
+     * @ORM\ManyToMany(targetEntity=Categorias::class, inversedBy="libros")
      */
     private $categorias;
 
@@ -356,7 +356,7 @@ class Libros
     {
         if (!$this->categorias->contains($categoria)) {
             $this->categorias[] = $categoria;
-            $categoria->addIdLibro($this);
+            $categoria->addLibros($this);
         }
 
         return $this;
@@ -365,7 +365,7 @@ class Libros
     public function removeCategoria(Categorias $categoria): self
     {
         if ($this->categorias->removeElement($categoria)) {
-            $categoria->removeIdLibro($this);
+            $categoria->removeLibros($this);
         }
 
         return $this;

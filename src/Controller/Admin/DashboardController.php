@@ -24,7 +24,9 @@ class DashboardController extends AbstractDashboardController
     {
         if(!$this->isGranted('ROLE_ADMIN'))
             return $this->redirectToRoute('admin_login');
-        return parent::index();
+            return $this->render('EasyAdmin/content.html.twig');
+            return parent::index();
+            // return $this->get(Libros::class);
     }
 
     public function configureDashboard(): Dashboard
