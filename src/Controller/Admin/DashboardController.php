@@ -22,11 +22,11 @@ class DashboardController extends AbstractDashboardController
      */
     public function index(): Response
     {
-        if(!$this->isGranted('ROLE_ADMIN'))
+        if (!$this->isGranted('ROLE_ADMIN'))
             return $this->redirectToRoute('admin_login');
-            return $this->render('EasyAdmin/content.html.twig');
-            return parent::index();
-            // return $this->get(Libros::class);
+        return $this->render('EasyAdmin/content.html.twig');
+        return parent::index();
+        // return $this->get(Libros::class);
     }
 
     public function configureDashboard(): Dashboard
@@ -37,8 +37,6 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        // yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
-        // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
         yield MenuItem::linkToDashboard('Inicio', 'fa fa-home');
 
         yield MenuItem::section('Escritura');
@@ -51,6 +49,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Administración');
         yield MenuItem::linkToCrud('Usuarios', 'fa fa-tags', Usuarios::class);
     }
+    
     public function configureAssets(): Assets
     {
         return Assets::new()->addCssFile('css/admin.css');

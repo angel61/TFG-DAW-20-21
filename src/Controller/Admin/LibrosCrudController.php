@@ -41,7 +41,6 @@ class LibrosCrudController extends AbstractCrudController
             TextEditorField::new('descripcion_larga','Descripción'),
             DateField::new('fecha_publicacion'),
             TextField::new('idioma'),
-            // BooleanField::new('destacado'),
             BooleanField::new('destacado'),
             MoneyField::new('precio')->setCurrency('EUR'),
             BooleanField::new('activo'),
@@ -58,11 +57,10 @@ class LibrosCrudController extends AbstractCrudController
     
     public function configureActions(Actions $actions): Actions
     {
-        return $actions
-            // ...
-            ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
-                return $action->setIcon('fa fa-file-alt')->setLabel(false);
-            });
+        // return $actions
+        //     ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
+        //         return $action->setIcon('fa fa-file-alt')->setLabel(false);
+        //     });
     }
 
     public function renderInvoice(AdminContext $context)
