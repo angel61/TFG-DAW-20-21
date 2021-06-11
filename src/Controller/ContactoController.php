@@ -18,7 +18,6 @@ class ContactoController extends AbstractController
      */
     public function contacto(Request $request, MailerInterface $mailer): Response
     {
-
         $form = $this->createForm(ContactoType::class);
 
         $form->handleRequest($request);
