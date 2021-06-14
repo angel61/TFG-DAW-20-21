@@ -40,14 +40,16 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Inicio', 'fa fa-home');
 
         yield MenuItem::section('Escritura');
-        yield MenuItem::linkToCrud('Libros', 'fa fa-tags', Libros::class);
-        yield MenuItem::linkToCrud('Autores', 'fa fa-tags', Autores::class);
-        yield MenuItem::linkToCrud('Editoriales', 'fa fa-tags', Editoriales::class);
-        yield MenuItem::linkToCrud('Categorias', 'fa fa-tags', Categorias::class);
+        yield MenuItem::linkToCrud('Libros', 'fas fa-book', Libros::class);
+        yield MenuItem::linkToCrud('Autores', 'fas fa-feather-alt', Autores::class);
+        yield MenuItem::linkToCrud('Editoriales', 'fas fa-paragraph', Editoriales::class);
+        yield MenuItem::linkToCrud('Categorias', 'fas fa-bookmark', Categorias::class);
         yield MenuItem::section('Noticias');
-        yield MenuItem::linkToCrud('Noticias', 'fa fa-tags', Noticias::class);
+        yield MenuItem::linkToCrud('Noticias', 'fas fa-newspaper', Noticias::class);
+        // yield MenuItem::linkToCrud('Comentarios', 'fa fa-tags', Comentarios::class);
         yield MenuItem::section('Administración');
-        yield MenuItem::linkToCrud('Usuarios', 'fa fa-tags', Usuarios::class);
+        yield MenuItem::linkToCrud('Usuarios', 'fas fa-users', Usuarios::class);
+        // yield MenuItem::linkToCrud('Redes sociales', 'fa fa-tags', RedesSociales::class);
     }
     
     public function configureAssets(): Assets
