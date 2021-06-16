@@ -102,12 +102,12 @@ class Comentarios
         return $this;
     }
 
-    public function getUsuario(): ?usuarios
+    public function getUsuario(): ?Usuarios
     {
         return $this->usuario;
     }
 
-    public function setUsuario(?usuarios $usuario): self
+    public function setUsuario(?Usuarios $usuario): self
     {
         $this->usuario = $usuario;
 

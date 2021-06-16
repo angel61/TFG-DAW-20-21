@@ -41,8 +41,29 @@ class NoticiasController extends AbstractController
             ->getRepository(Noticias::class)
             ->getNoticiaActiva($id);
 
+        // if ($this->getUser() !== null)
+            if ($this->getUser() !== null && in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
+                $noticia = $this->getDoctrine()
+                    ->getRepository(Noticias::class)
+                    ->getNoticiaAdmin($id);
+            }
+
         if ($noticia === null)
             throw (new Exception("Pagina no encontrada", 404));
+
+        /* 
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comentario = $form->getData();
+            $comentario->setUsuario($this->getUser());
+            $comentario->setNoticia($noticia);
+            $comentario->setOculto(false);
+            $comentario->setFechaPublicacion(new DateTime("now"));
+            $comentario->getUltimaEdicion(new DateTime("now"));
+
+            // return $this->redirectToRoute('task_success');
+        }
+         */
 
         return $this->render('noticias/noticia.html.twig', [
             "noticia" => $noticia

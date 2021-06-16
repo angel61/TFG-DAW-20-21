@@ -59,13 +59,17 @@ class LibrosCrudController extends AbstractCrudController
             // CollectionField::new('autores')->hideOnForm(),
         ];
     }
-    
+
     public function configureActions(Actions $actions): Actions
     {
+        $vistaPrevia = Action::new('vistaPrevia', 'Vista previa')
+            ->linkToUrl(function (Libros $entity) {
+                return 'libros/'.$entity->getId();
+            });
+
         return $actions
-           /*  ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
-                return $action->setIcon('fa fa-file-alt')->setLabel(false);
-            }) */;
+            ->add(Crud::PAGE_INDEX, $vistaPrevia)
+        ;
     }
 
     public function renderInvoice(AdminContext $context)

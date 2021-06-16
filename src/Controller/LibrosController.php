@@ -39,8 +39,15 @@ class LibrosController extends AbstractController
      */
     public function libro($id): Response
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        $libro = $entityManager->getRepository(Libros::class)->find($id);
+        $libro = $this->getDoctrine()
+            ->getRepository(Libros::class)
+            ->getLibroActivo($id);
+
+            if ($this->getUser() !== null && in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
+                $libro = $this->getDoctrine()
+                    ->getRepository(Libros::class)
+                    ->getLibroAdmin($id);
+            }
 
 
         if ($libro === null)

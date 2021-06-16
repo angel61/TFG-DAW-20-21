@@ -37,6 +37,24 @@ class NoticiasRepository extends ServiceEntityRepository
 
         return $query->getOneOrNullResult();
     }
+    // /**
+    //  * @return Libros Returns a Libros objects
+    //  */
+    
+    public function getNoticiaAdmin($id)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT n
+            FROM App\Entity\Noticias n
+            WHERE n.id  = :id'
+        )
+        ->setParameter('id', $id)
+        ->setMaxResults(1);
+
+        return $query->getOneOrNullResult();
+    }
 
     public function getNoticiaImportante()
     {
@@ -72,32 +90,4 @@ class NoticiasRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    // /**
-    //  * @return Noticias[] Returns an array of Noticias objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('n')
-            ->andWhere('n.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('n.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Noticias
-    {
-        return $this->createQueryBuilder('n')
-            ->andWhere('n.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

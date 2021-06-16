@@ -79,4 +79,34 @@ class LibrosRepository extends ServiceEntityRepository
         // returns an array of Product objects
         return $query->getResult();
     }
+    
+    public function getLibroActivo($id)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT l
+            FROM App\Entity\Libros l
+            WHERE l.id = :id AND l.activo=1'
+        )->setParameter('id', $id)
+        ->setMaxResults(1);
+
+        // returns an array of Product objects
+        return $query->getOneOrNullResult();
+    }
+    
+    public function getLibroAdmin($id)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT l
+            FROM App\Entity\Libros l
+            WHERE l.id = :id'
+        )->setParameter('id', $id)
+        ->setMaxResults(1);
+
+        // returns an array of Product objects
+        return $query->getOneOrNullResult();
+    }
 }
