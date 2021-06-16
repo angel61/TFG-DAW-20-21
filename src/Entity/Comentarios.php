@@ -39,7 +39,7 @@ class Comentarios
     private $noticia;
 
     /**
-     * @ORM\ManyToOne(targetEntity=usuarios::class, inversedBy="comentarios")
+     * @ORM\ManyToOne(targetEntity=Usuarios::class, inversedBy="comentarios")
      * @ORM\JoinColumn(nullable=false)
      */
     private $usuario;

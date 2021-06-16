@@ -11,6 +11,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -18,6 +20,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class LibrosCrudController extends AbstractCrudController
 {
@@ -49,18 +52,20 @@ class LibrosCrudController extends AbstractCrudController
             NumberField::new('descuento')->hideOnIndex()->setRequired(false),
             BooleanField::new('top_ventas'),
             ImageField::new('url_portada','Portada')->setUploadDir('public\images\libros')->setUploadedFileNamePattern('[year][month][day]-[contenthash].[extension]')->setRequired(false)->hideOnIndex(),
-            AssociationField::new('categorias'),
-            AssociationField::new('editorial'),
-            AssociationField::new('autores'),
+            AssociationField::new('categorias')/* ->onlyOnForms() */->setRequired(true),
+            // CollectionField::new('categorias')->hideOnForm()->setFormType(AssociationField),
+            AssociationField::new('editorial')->setRequired(true),
+            AssociationField::new('autores')/* ->onlyOnForms() */->setRequired(true),
+            // CollectionField::new('autores')->hideOnForm(),
         ];
     }
     
     public function configureActions(Actions $actions): Actions
     {
-        // return $actions
-        //     ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
-        //         return $action->setIcon('fa fa-file-alt')->setLabel(false);
-        //     });
+        return $actions
+           /*  ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
+                return $action->setIcon('fa fa-file-alt')->setLabel(false);
+            }) */;
     }
 
     public function renderInvoice(AdminContext $context)
