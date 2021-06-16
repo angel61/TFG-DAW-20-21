@@ -25,11 +25,11 @@ class NoticiasCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('titulo'),
-            TextEditorField::new('texto'),
             TextEditorField::new('descripcion'),
+            TextEditorField::new('texto'),
             BooleanField::new('activa'),
             NumberField::new('importancia'),
-            DateField::new('fecha'),
+            DateField::new('fecha','Fecha de publicación'),
             ImageField::new('url_imagen','Portada')->setUploadDir('public\images\noticias')->setUploadedFileNamePattern('[year][month][day]-[contenthash].[extension]')->setRequired(false)->hideOnIndex(),
         ];
     }

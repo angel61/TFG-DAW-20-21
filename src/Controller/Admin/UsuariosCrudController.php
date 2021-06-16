@@ -24,10 +24,10 @@ class UsuariosCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('username'),
+            TextField::new('username','Nombre de usuario'),
             BooleanField::new('activo'),
             ChoiceField::new('true_roles','Roles')->setChoices(['Admin'=>'ROLE_ADMIN','Usuario'=>'ROLE_USER'])->allowMultipleChoices(),
-            TextField::new('password')->hideOnIndex()->setFormType(PasswordType::class)->setRequired(false),
+            TextField::new('password','Nueva contraseña')->onlyOnForms()->setFormType(PasswordType::class)->setRequired(false),
         ];
     }
    

@@ -23,42 +23,42 @@
 {% endblock %}
 {% block body %}
 	{# <div class="container py-3">
-					<div class="row py-4">
-						<div class="libro-portada col-md-5 d-flex justify-content-center">
-							<img src="{{ asset('images/libros/'~libro.urlPortada) }}" class="libro-img col-10">
-						</div>
-						<div class="col-md-7 container px-4">
-							<div>
-								<div class="tabs">
-									<div class="tab-button-outer">
-										<ul id="tab-button">
-											<li>
-												<a href="#descripcion">Descripción</a>
-											</li>
-											<li>
-												<a href="#detalles">Detalles</a>
-											</li>
-										</ul>
-									</div>
-									<div class="tab-select-outer">
-										<select id="tab-select">
-											<option value="#descripcion">Descripción</option>
-											<option value="#detalles">Detalles</option>
-										</select>
-									</div>
-			
-									<div id="descripcion" class="tab-contents">
-										<p>{{ libro.descripcionLarga|raw }}</p>
-									</div>
-									<div id="detalles" class="tab-contents">
-										<h2>Tab 2</h2>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quos aliquam consequuntur, esse provident impedit minima porro! Laudantium laboriosam culpa quis fugiat ea, architecto velit ab, deserunt rem quibusdam voluptatum.</p>
+						<div class="row py-4">
+							<div class="libro-portada col-md-5 d-flex justify-content-center">
+								<img src="{{ asset('images/libros/'~libro.urlPortada) }}" class="libro-img col-10">
+							</div>
+							<div class="col-md-7 container px-4">
+								<div>
+									<div class="tabs">
+										<div class="tab-button-outer">
+											<ul id="tab-button">
+												<li>
+													<a href="#descripcion">Descripción</a>
+												</li>
+												<li>
+													<a href="#detalles">Detalles</a>
+												</li>
+											</ul>
+										</div>
+										<div class="tab-select-outer">
+											<select id="tab-select">
+												<option value="#descripcion">Descripción</option>
+												<option value="#detalles">Detalles</option>
+											</select>
+										</div>
+				
+										<div id="descripcion" class="tab-contents">
+											<p>{{ libro.descripcionLarga|raw }}</p>
+										</div>
+										<div id="detalles" class="tab-contents">
+											<h2>Tab 2</h2>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quos aliquam consequuntur, esse provident impedit minima porro! Laudantium laboriosam culpa quis fugiat ea, architecto velit ab, deserunt rem quibusdam voluptatum.</p>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</div> #}
+					</div> #}
 
 	<div class="container d-flex justify-content-center">
 		<div class="col-lg-8 col-md-11 contenedor-noticia">
@@ -70,51 +70,56 @@
 				<a href="{ libro.urlCompra }"></a>
 			</div>
 			<div>
-				<table>
-					<tr>
-						<th>Isbn</th>
-						<td>{{ libro.isbn }}</td>
-					</tr>
-					{% if libro.ean != null and libro.ean|trim != "" %}
+				<a class="" data-toggle="collapse" href="#tabla-informacion" aria-expanded="false" aria-controls="tabla-informacion">
+    Mas información
+  </a>
+				<div class="collapse" id="tabla-informacion">
+					<table class="table table-striped table-responsive-md">
 						<tr>
-							<th>Ean</th>
-							<td>{{ libro.ean }}</td>
+							<th>ISBN</th>
+							<td>{{ libro.isbn }}</td>
 						</tr>
-					{% endif %}
-					<tr>
-						<th>Numero de paginas</th>
-						<td>{{ libro.paginas }}</td>
-					</tr>
-					<tr>
-						<th>Fecha de publicacion</th>
-						<td>{{ libro.fechaPublicacion|date("d/m/Y", "Europe/Madrid") }}</td>
-					</tr>
-					{% if libro.idioma != null and libro.idioma|trim != "" %}
+						{% if libro.ean != null and libro.ean|trim != "" %}
+							<tr>
+								<th>EAN</th>
+								<td>{{ libro.ean }}</td>
+							</tr>
+						{% endif %}
 						<tr>
-							<th>Idioma</th>
-							<td>{{ libro.idioma }}</td>
+							<th>Numero de paginas</th>
+							<td>{{ libro.paginas }}</td>
 						</tr>
-					{% endif %}
-					<tr>
-						<th>Precio</th>
-						<td>{{ (libro.precio / 100)|format_currency('EUR') }}</td>
-					</tr>
-					<tr>
-						<th>Categorias</th>
-						{% set categorias = '' %}
-						{% for key, categoria in libro.categorias %}
-							{% if key != 0 %}
-								{% set categoria = categorias ~ ', ' %}
-							{% endif %}
-							{% set categorias = categorias ~ categoria.nombre %}
-						{% endfor %}
-						<td>{{ categorias }}</td>
-					</tr>
-					<tr>
-						<th>Editorial</th>
-						<td>{{ libro.editorial.nombre }}</td>
-					</tr>
-				</table>
+						<tr>
+							<th>Fecha de publicacion</th>
+							<td>{{ libro.fechaPublicacion|date("d/m/Y", "Europe/Madrid") }}</td>
+						</tr>
+						{% if libro.idioma != null and libro.idioma|trim != "" %}
+							<tr>
+								<th>Idioma</th>
+								<td>{{ libro.idioma }}</td>
+							</tr>
+						{% endif %}
+						<tr>
+							<th>Precio</th>
+							<td>{{ (libro.precio / 100)|format_currency('EUR') }}</td>
+						</tr>
+						<tr>
+							<th>Categorias</th>
+							{% set categorias = '' %}
+							{% for key, categoria in libro.categorias %}
+								{% if key != 0 %}
+									{% set categorias = categorias ~ ', ' %}
+								{% endif %}
+								{% set categorias = categorias ~ categoria %}
+							{% endfor %}
+							<td>{{ categorias }}</td>
+						</tr>
+						<tr>
+							<th>Editorial</th>
+							<td>{{ libro.editorial.nombre }}</td>
+						</tr>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>

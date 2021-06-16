@@ -44,6 +44,11 @@ class Comentarios
      */
     private $usuario;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $oculto;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +110,18 @@ class Comentarios
     public function setUsuario(?usuarios $usuario): self
     {
         $this->usuario = $usuario;
+
+        return $this;
+    }
+
+    public function getOculto(): ?bool
+    {
+        return $this->oculto;
+    }
+
+    public function setOculto(bool $oculto): self
+    {
+        $this->oculto = $oculto;
 
         return $this;
     }

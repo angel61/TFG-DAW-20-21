@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Autores;
 use App\Entity\Categorias;
+use App\Entity\Comentarios;
 use App\Entity\Editoriales;
 use App\Entity\Libros;
 use App\Entity\Noticias;
@@ -46,7 +47,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Categorias', 'fas fa-bookmark', Categorias::class);
         yield MenuItem::section('Noticias');
         yield MenuItem::linkToCrud('Noticias', 'fas fa-newspaper', Noticias::class);
-        // yield MenuItem::linkToCrud('Comentarios', 'fa fa-tags', Comentarios::class);
+        yield MenuItem::linkToCrud('Comentarios', 'fas fa-comments', Comentarios::class);
         yield MenuItem::section('Administración');
         yield MenuItem::linkToCrud('Usuarios', 'fas fa-users', Usuarios::class);
         // yield MenuItem::linkToCrud('Redes sociales', 'fa fa-tags', RedesSociales::class);
