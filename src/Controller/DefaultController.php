@@ -33,7 +33,6 @@ class DefaultController extends AbstractController
     }
     /**
      * @Route("/sobre_mi", name="sobreMi", defaults={"_locale"="es"}, requirements={"_locale"="%app.locales%"})
-     * Route("/{_locale}/sobre_mi", name="sobreMi_locale", requirements={"_locale" = "%app.locales%"})
      */
     public function sobreMi(): Response
     {

@@ -7,15 +7,13 @@ use Exception;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class NoticiasController extends AbstractController
 {
     /**
      * @Route("/noticias", name="noticias", defaults={"_locale"="es"}, requirements={"_locale"="%app.locales%"})
-     * Route("/{_locale}/noticias", name="noticias_locale", requirements={"_locale" = "%app.locales%"})
      */
-    public function noticias(TranslatorInterface $translator): Response
+    public function noticias(): Response
     {
         $noticia = $this->getDoctrine()
             ->getRepository(Noticias::class)
@@ -33,7 +31,6 @@ class NoticiasController extends AbstractController
 
     /**
      * @Route("/noticias/{id}", name="noticia", defaults={"_locale"="es"}, requirements={"_locale"="%app.locales%"})
-     * Route("/{_locale}/noticias/{id}", name="noticia_locale", requirements={"_locale" = "%app.locales%"})
      */
     public function noticia($id): Response
     {

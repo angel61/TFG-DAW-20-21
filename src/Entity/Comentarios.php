@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ComentariosRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -48,6 +50,21 @@ class Comentarios
      * @ORM\Column(type="boolean")
      */
     private $oculto;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Comentarios::class, inversedBy="comentarios")
+     */
+    private $padre;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comentarios::class, mappedBy="padre")
+     */
+    private $comentarios;
+
+    public function __construct()
+    {
+        $this->comentarios = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -122,6 +139,48 @@ class Comentarios
     public function setOculto(bool $oculto): self
     {
         $this->oculto = $oculto;
+
+        return $this;
+    }
+
+    public function getPadre(): ?self
+    {
+        return $this->padre;
+    }
+
+    public function setPadre(?self $padre): self
+    {
+        $this->padre = $padre;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getComentarios(): Collection
+    {
+        return $this->comentarios;
+    }
+
+    public function addComentario(self $comentario): self
+    {
+        if (!$this->comentarios->contains($comentario)) {
+            $this->comentarios[] = $comentario;
+            $comentario->setPadre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComentario(self $comentario): self
+    {
+        if ($this->comentarios->removeElement($comentario)) {
+            // set the owning side to null (unless already changed)
+            if ($comentario->getPadre() === $this) {
+                $comentario->setPadre(null);
+            }
+        }
 
         return $this;
     }
