@@ -11,3 +11,18 @@
 .libro-img{
   height: fit-content;
 }
+
+.boton-compra{
+  color: #E4E3E9;
+  background-color: #38373c;
+  font-size: 1.15rem;
+  /* background-color: whitesmoke; */
+  padding: .5em;
+  transition:.2s ease;
+}
+.boton-compra:hover{
+  color: #E4E3E9;
+  background-color: #38373ce3;
+  text-decoration: none;
+  padding: .5em;
+}

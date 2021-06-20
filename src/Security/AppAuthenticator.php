@@ -24,7 +24,7 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator implements Passwor
 {
     use TargetPathTrait;
 
-    public const LOGIN_ROUTE = 'admin_login';
+    public const LOGIN_ROUTE = 'user_login';
 
     private $entityManager;
     private $urlGenerator;
@@ -97,8 +97,10 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator implements Passwor
         }
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        return new RedirectResponse($this->urlGenerator->generate('admin'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        if ($targetPath = $request->query->get('_target_path'))
+            return new RedirectResponse($targetPath);
+        return new RedirectResponse($this->urlGenerator->generate('noticias'));
+        throw new \Exception('TODO: provide a valid redirect inside ' . __FILE__);
     }
 
     protected function getLoginUrl()

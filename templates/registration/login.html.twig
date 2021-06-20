@@ -1,0 +1,83 @@
+{# {% extends 'base.html.twig' %} #}
+
+{# {% block title %}Register{% endblock %} #}
+
+	<html>
+		<head>
+		<meta charset="UTF-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>
+			Iniciar sesión
+		</title>
+		{# Run `composer require symfony/webpack-encore-bundle`
+																																				           and uncomment the following Encore helpers to start using Symfony UX #}
+		<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+		<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/HeadernFooter.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/body.css') }}">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=League+Script&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
+		{% block stylesheets %}
+			{#{{ encore_entry_link_tags('app') }}#}
+		{% endblock %}
+	</head>
+	<body>
+		{% block body %}
+			<div class="container vh-100 d-flex justify-content-center align-items-center">
+				<div class="bg-light col-md-7 col-lg-5 p-4">
+					{% for flashError in app.flashes('verify_email_error') %}
+						<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+					{% endfor %}
+					<h1>Iniciar sesión</h1>
+
+					{# {{ form_start(loginForm) }}
+																									<div class="py-2">
+																										{{ form_row(loginForm.username, { 
+																				                    'attr': {'class': 'input-borde'},
+																				            label: 'Usuario'
+																								}) }}
+																									</div>
+																									<div class="py-2">
+																										{{ form_row(loginForm.plainPassword, { 
+																				                    'attr': {'class': 'input-borde'},
+																				            label: 'Contraseña'
+																								}) }}
+																									</div>
+																				
+																									<button type="submit" class="boton-borde col-12">Iniciar sesión</button>
+																									{{ form_end(loginForm) }} #}
+					<form method="post">
+						{% if error %}
+							<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+						{% endif %}
+						<div class="py-2">
+							<label for="username">Usuario</label>
+							<input type="text" id="username" name="username" class="input-borde" value="{{ last_username }}" required autofocus autocomplete="username">
+						</div>
+
+						<div class="py-2">
+							<label for="password">Contraseña</label>
+							<input type="password" id="password" name="password" class="input-borde" required autocomplete="current-password">
+						</div>
+
+						<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+						<button type="submit" class="boton-borde col-12" onclick="this.form.submit(); this.disabled=true;">Iniciar sesión</button>
+					</form>
+				</div>
+			</div>
+		{% endblock %}
+
+		<script src="{{ asset('jquery/jquery.min.js') }}"></script>
+		<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+		<script src="{{ asset('jquery/menu.js') }}"></script>
+		<script src="https://kit.fontawesome.com/2bf8f3b8fb.js" crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+		<script>
+			AOS.init();
+		</script>
+		{% block javascripts %}{% endblock %}
+	</body>
+</html>

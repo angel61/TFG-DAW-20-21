@@ -3,15 +3,15 @@
 
 {% set nombre_pagina = 'layout.contacto'|trans %}
 {% block title %}
-{{ libro.nombre }}
+	{{ libro.nombre }}
 {% endblock %}
 {% block body %}
-<div class="container contenedor-contacto">
-	<div class="formulario-contacto col-md-8 col-lg-6 p-4 my-5">
-		<div class="titulo-contacto">Contactanos</div>
-        {{ form_start(our_form) }}
+	<div class="container contenedor-contacto">
+		<div class="formulario-contacto col-md-8 col-lg-6 p-4 my-5 bg-light">
+			<div class="titulo-contacto">Contactanos</div>
+			{{ form_start(our_form) }}
 			<div class="d-flex flex-column contenedor-form-contacto">
-				
+
 				{{ form_row(our_form.name, { 
                     'attr': {'class': 'input-borde'}
 				}) }}
@@ -25,10 +25,10 @@
 				{{ form_errors(our_form) }}
 			</div>
 			{{ form_end(our_form) }}
-		
+
+		</div>
 	</div>
-</div>
 {% endblock %}
 {% block stylesheets %}
-<link rel="stylesheet" href="{{ asset('css/contacto.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/contacto.css') }}">
 {% endblock %}

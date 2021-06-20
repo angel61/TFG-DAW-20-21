@@ -31,9 +31,9 @@ security:
                     - App\Security\AppAuthenticator
                 entry_point: App\Security\AppAuthenticator
             logout:
-                path: admin_logout
+                path: user_logout
                 # where to redirect after logout
-                target: admin
+                target: logout_redirect
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -45,5 +45,6 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/logout, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }

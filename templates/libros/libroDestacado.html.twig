@@ -1,0 +1,19 @@
+<div class="apartado-libro">
+	<div class="listado-libro {% if (key|default(1) % 2) is not same as (0) %}listado-libro-reverso{% endif %} row">
+		<div class="container-xl">
+			<div class="libro-portada col-md-6 col-lg-5">
+				<img src="{{ asset('images/libros/'~libro.urlPortada) }}" class="libro-img">
+			</div>
+			<div class="col-lg-7 col-md-6 libro-texto">
+				<div>
+					<div class="h4 font-weight-bold libro-titulo pb-2 pb-mb-3 titulo-texto">{{ libro.nombre }}</div>
+					<p>{{ libro.descripcionCorta|raw }}</p>
+				</div>
+				<a class="boton-borde" href="{{ path('libros')~'/'~libro.id }}">Más información</a>
+			</div>
+		</div>
+		<div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="50" class="enlace-apartado col-12 py-3">
+			<a class="link-p col-12 col-md-6 text-center" href="{{ path('libros') }}">Ver mas libros</a>
+		</div>
+	</div>
+</div>

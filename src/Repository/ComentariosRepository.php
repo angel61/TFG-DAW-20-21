@@ -18,6 +18,22 @@ class ComentariosRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Comentarios::class);
     }
+    
+    public function getComentariosNoticia($noticia)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT c
+            FROM App\Entity\Comentarios c
+            LEFT JOIN c.noticia n
+            WHERE n.id  = :noticia AND c.oculto=0
+            ORDER BY c.id ASC'
+        )->setParameter('noticia', $noticia);
+
+        // returns an array of Product objects
+        return $query->getResult();
+    }
 
     // /**
     //  * @return Comentarios[] Returns an array of Comentarios objects

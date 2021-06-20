@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UsuariosRepository::class)
- * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
+ * @UniqueEntity(fields={"username"}, message="Existe una cuenta con este usuario.")
  */
 class Usuarios implements UserInterface
 {
@@ -44,7 +44,7 @@ class Usuarios implements UserInterface
     private $activo;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comentarios::class, mappedBy="usuario")
+     * @ORM\OneToMany(targetEntity=Comentarios::class, mappedBy="usuario", cascade={"persist", "remove"})
      */
     private $comentarios;
 

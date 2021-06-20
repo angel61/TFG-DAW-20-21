@@ -39,5 +39,13 @@ services:
         class: '../src/EventListener/'
         arguments: [doctrine.orm.entity_manager]
 
+# session:
+#     public: true
+#     class: Symfony\Component\HttpFoundation\Session\Session
+#     arguments: ['@session.storage', '@session.namespacedattributebag']
+
+# session.namespacedattributebag:
+#     class: Symfony\Component\HttpFoundation\Session\Attribute\NamespacedAttributeBag
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

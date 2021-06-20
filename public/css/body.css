@@ -101,6 +101,10 @@ body{
   color: #EEEFF3;
 }
 
+.link-p.normal-size-lp{
+  font-size: 1.1rem;
+}
+
 /* 
 html {
     font-size: 1rem;

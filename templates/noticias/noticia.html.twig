@@ -13,7 +13,46 @@
 	<div class="container d-flex justify-content-center">
 		<div class="col-lg-8 col-md-11 contenedor-noticia">
 			<div><img src="{{ asset('images/noticias/'~noticia.urlImagen) }}" class="img-fluid pb-4" alt="Responsive image"></div>
-			<div><p>{{ noticia.texto|raw }}</p></div>
+			<div>
+				<p>{{ noticia.texto|raw }}</p>
+			</div>
+			<section>
+				<h2 class="mt-4 pt-4 pb-2 col-12 text-center titulo-texto">COMENTARIOS</h2>
+				{% if is_granted('ROLE_USER') == true %}
+					<div class="my-3 ">
+						Usuario: {{ username }}
+						<a href="../logout?_target_path=/noticias/{{ noticia.id }}" class="boton-borde mx-3" id="btnIniciarSesion">Cerrar sesión</a>
+						</div>
+					{{ form_start(form_coment) }}
+					<div class="d-flex flex-column contenedor-form-comentarios mb-3">
+
+						{{ form_row(form_coment.comentario, { 
+                    'attr': {'class': 'input-borde'}
+				}) }}
+						<input type="submit" value="Enviar" class="boton-borde col-12">
+						{{ form_errors(form_coment) }}
+					</div>
+					{{ form_end(form_coment) }}
+				{% else %}
+					<div class="my-3 d-flex flex-wrap align-items-baseline">
+						<p class="mr-2">Para poder comentar inicie sesión:</p>
+						<a href="../login?_target_path=/noticias/{{ noticia.id }}" class="boton-borde mr-2" id="btnIniciarSesion">Iniciar sesión</a>
+						<a href="../registro?_target_path=/noticias/{{ noticia.id }}" class="boton-borde" id="btnRegistrar">Registrarse</a>
+					
+					</div>
+				{% endif %}
+				<div class=" overflow-hidden">
+					{% for key, comentario in comentarios %}
+						<div data-aos="slide-left" data-aos-duration="500" class="bg-light p-4 my-2">
+							<div class="d-flex flex-row align-items-baseline">
+								<h4>{{ comentario.usuario }}</h4>
+								<div class="ml-2 text-secondary">{{ comentario.fechaPublicacion|date("d/m/Y", "Europe/Madrid") }}</div>
+							</div>
+							<p>{{ comentario.texto }}</p>
+						</div>
+					{% endfor %}
+				</div>
+			</section>
 		</div>
 	</div>
 {% endblock %}
