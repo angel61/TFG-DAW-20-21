@@ -119,9 +119,9 @@ class Libros
     private $editorial;
 
     /**
-     * @ORM\Column(type="string", length=200)
+     * @ORM\Column(type="string", length=200, nullable=true)
      */
-    private $url_portada = 'default.jpg';
+    private $url_portada;
 
     /**
      * @ORM\ManyToMany(targetEntity=Autores::class, inversedBy="libros")
@@ -385,10 +385,12 @@ class Libros
 
     public function getUrlPortada(): ?string
     {
+        if ($this->url_portada === null)
+            return 'default.jpg';
         return $this->url_portada;
     }
 
-    public function setUrlPortada(string $url_portada): self
+    public function setUrlPortada(?string $url_portada): self
     {
         $this->url_portada = $url_portada;
 

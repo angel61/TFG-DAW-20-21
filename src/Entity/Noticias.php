@@ -50,7 +50,7 @@ class Noticias
     private $fecha;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     private $url_imagen;
 
@@ -143,10 +143,12 @@ class Noticias
 
     public function getUrlImagen(): ?string
     {
+        if ($this->url_imagen === null)
+            return 'default.jpg';
         return $this->url_imagen;
     }
 
-    public function setUrlImagen(string $url_imagen): self
+    public function setUrlImagen(?string $url_imagen): self
     {
         $this->url_imagen = $url_imagen;
 
