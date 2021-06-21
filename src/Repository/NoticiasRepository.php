@@ -22,7 +22,7 @@ class NoticiasRepository extends ServiceEntityRepository
     // /**
     //  * @return Libros Returns a Libros objects
     //  */
-    
+
     public function getNoticiaActiva($id)
     {
         $entityManager = $this->getEntityManager();
@@ -32,15 +32,15 @@ class NoticiasRepository extends ServiceEntityRepository
             FROM App\Entity\Noticias n
             WHERE n.id  = :id AND n.activa=1'
         )
-        ->setParameter('id', $id)
-        ->setMaxResults(1);
+            ->setParameter('id', $id)
+            ->setMaxResults(1);
 
         return $query->getOneOrNullResult();
     }
     // /**
     //  * @return Libros Returns a Libros objects
     //  */
-    
+
     public function getNoticiaAdmin($id)
     {
         $entityManager = $this->getEntityManager();
@@ -50,8 +50,8 @@ class NoticiasRepository extends ServiceEntityRepository
             FROM App\Entity\Noticias n
             WHERE n.id  = :id'
         )
-        ->setParameter('id', $id)
-        ->setMaxResults(1);
+            ->setParameter('id', $id)
+            ->setMaxResults(1);
 
         return $query->getOneOrNullResult();
     }
@@ -66,7 +66,7 @@ class NoticiasRepository extends ServiceEntityRepository
             WHERE n.activa=1
             ORDER BY n.importancia DESC'
         )
-        ->setMaxResults(1);
+            ->setMaxResults(1);
 
         return $query->getOneOrNullResult();
     }
@@ -74,8 +74,8 @@ class NoticiasRepository extends ServiceEntityRepository
     // /**
     //  * @return Libros[] Returns an array of Libros objects
     //  */
-    
-    public function getNoticiasActivas()
+
+    public function getNoticiasActivas($limit = null)
     {
         $entityManager = $this->getEntityManager();
 
@@ -85,9 +85,11 @@ class NoticiasRepository extends ServiceEntityRepository
             WHERE n.activa=1
             ORDER BY n.fecha DESC'
         );
+        if ($limit != null)
+            $query
+                ->setMaxResults($limit);;
 
         // returns an array of Product objects
         return $query->getResult();
     }
-
 }

@@ -1,9 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'plain.html.twig' %}
 {% block body %}
-    <h1>Page not found</h1>
+			<div class="container vh-100 d-flex flex-column justify-content-center align-items-center">
+    <h1>ERROR</h1>
 
     <p>
-        misspelling or <a href="{{ path('inicio') }}">return to the homepage</a>.
+        Parece que sucedio un error. <a href="{{ path('inicio') }}">Volver a la página de inicio</a>.
     </p>
     {{exception.message}}
+    </div>
 {% endblock %}

@@ -39,10 +39,10 @@ class UserSecurityController extends AbstractController
     {
         //throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
         // return "";
-        $session = $request->getSession();
-        $session->set('aaa', '/noticias');
-        if ($targetPath = $request->query->get('_target_path'))
-            return $this->redirectToRoute($targetPath);
+        // $session = $request->getSession();
+        // $session->set('aaa', '/noticias');
+        // if ($targetPath = $request->query->get('_target_path'))
+        //     return $this->redirectToRoute($targetPath);
         // return $this->redirectToRoute('admin');
     }
     /**

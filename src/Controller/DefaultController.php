@@ -22,7 +22,7 @@ class DefaultController extends AbstractController
 
         $noticias = $this->getDoctrine()
             ->getRepository(Noticias::class)
-            ->getNoticiasActivas();
+            ->getNoticiasActivas(6);
 
         return $this->render('default/inicio.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir') . '/..'),

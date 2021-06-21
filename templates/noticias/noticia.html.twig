@@ -5,6 +5,7 @@
 	{{ parent() }}
 {% endblock %}
 {% set nombre_pagina = noticia.titulo %}
+{% set cabecera_imagen = asset('images/noticias.jpg') %}
 
 {% block title %}
 	{{ noticia.titulo }}
