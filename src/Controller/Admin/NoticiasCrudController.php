@@ -27,8 +27,8 @@ class NoticiasCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('titulo'),
-            TextEditorField::new('descripcion'),
+            TextField::new('titulo','Título'),
+            TextEditorField::new('descripcion','Descripción'),
             TextEditorField::new('texto'),
             BooleanField::new('activa'),
             NumberField::new('importancia'),

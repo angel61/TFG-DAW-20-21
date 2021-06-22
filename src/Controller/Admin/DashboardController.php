@@ -44,7 +44,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Libros', 'fas fa-book', Libros::class);
         yield MenuItem::linkToCrud('Autores', 'fas fa-feather-alt', Autores::class);
         yield MenuItem::linkToCrud('Editoriales', 'fas fa-paragraph', Editoriales::class);
-        yield MenuItem::linkToCrud('Categorias', 'fas fa-bookmark', Categorias::class);
+        yield MenuItem::linkToCrud('Categorías', 'fas fa-bookmark', Categorias::class);
         yield MenuItem::section('Noticias');
         yield MenuItem::linkToCrud('Noticias', 'fas fa-newspaper', Noticias::class);
         yield MenuItem::linkToCrud('Comentarios', 'fas fa-comments', Comentarios::class);

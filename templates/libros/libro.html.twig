@@ -68,7 +68,7 @@
 			</div>
 			<div class="my-2">
 				<a class="link-p normal-size-lp" data-toggle="collapse" href="#tabla-informacion" aria-expanded="false" aria-controls="tabla-informacion">
-    				Mas información
+    				Más información
   				</a>
 				<div class="collapse" id="tabla-informacion">
 					<table class="table table-striped table-responsive-md">
@@ -83,11 +83,11 @@
 							</tr>
 						{% endif %}
 						<tr>
-							<th>Numero de paginas</th>
+							<th>Numero de páginas</th>
 							<td>{{ libro.paginas }}</td>
 						</tr>
 						<tr>
-							<th>Fecha de publicacion</th>
+							<th>Fecha de publicación</th>
 							<td>{{ libro.fechaPublicacion|date("d/m/Y", "Europe/Madrid") }}</td>
 						</tr>
 						{% if libro.idioma != null and libro.idioma|trim != "" %}
@@ -101,7 +101,7 @@
 							<td>{{ (libro.precio / 100)|format_currency('EUR') }}</td>
 						</tr>
 						<tr>
-							<th>Categorias</th>
+							<th>Categorías</th>
 							{% set categorias = '' %}
 							{% for key, categoria in libro.categorias %}
 								{% if key != 0 %}

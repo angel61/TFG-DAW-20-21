@@ -30,7 +30,7 @@
 			</div>
 		</div>
 		<div class="container d-flex flex-column flex-md-row flex-md-wrap justify-content-center py-4">
-			<div class="h2 col-12 text-center titulo-texto">Ultimas noticias</div>
+			<div class="h2 col-12 text-center titulo-texto">Últimas noticias</div>
 			{% for filaNoticia in noticias|batch(3, false) %}
 				{% for key, noticia in filaNoticia %}
 					<div data-aos="zoom-in" data-aos-delay="{{ 100 * key }}" data-aos-duration="500" data-aos-once="true" class="col-md-4 col-lg-3 mb-4 mb-md-0 m-lg-3 d-flex flex-column text-center">

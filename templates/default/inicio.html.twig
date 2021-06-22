@@ -30,7 +30,7 @@
 					
 				</div>
 				<div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="50" data-aos-once="true" class="enlace-apartado col-12 pt-lg-3 mas-libros">
-					<a class="link-p col-12" href="{{ path('libros') }}">Ver mas libros</a>
+					<a class="link-p col-12" href="{{ path('libros') }}">Ver más libros</a>
 				</div>
 			</div>
 		</div>
@@ -40,13 +40,13 @@
 			<a class="link-p  titulo-texto" href="{{ path('contacto') }}">CONTACTO</a>
 		</div>
 		<div class="text-center">
-			Ponte en contacto conmigo y sigueme en mis redes sociales para estar al dia con mis publicaciones.
+			Ponte en contacto conmigo y sígueme en mis redes sociales para estar al dia con mis publicaciones.
 		</div>
 	</section>
 	<div class="bg-light">
 		<div class="container d-flex flex-column flex-md-row flex-md-wrap justify-content-center py-4">
 			<div class="h2 col-12 text-center mb-3">
-				<a class="link-p font-weight-bold titulo-texto" href="{{ path('noticias') }}">Ultimas noticias</a>
+				<a class="link-p font-weight-bold titulo-texto" href="{{ path('noticias') }}">Últimas noticias</a>
 			</div>
 			{% for filaNoticia in noticias|batch(3, false) %}
 				{% for key, noticia in filaNoticia %}
