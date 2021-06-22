@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\ContactoType;
+use Exception;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,30 +17,45 @@ class ContactoController extends AbstractController
      * @Route("/contacto", name="contacto", defaults={"_locale"="es"}, requirements={"_locale"="%app.locales%"})
      * Route("/{_locale}/contacto", name="contacto_locale", requirements={"_locale" = "%app.locales%"})
      */
-    public function contacto(Request $request, MailerInterface $mailer): Response
+    public function contacto(Request $request, MailerInterface $mailer, $resultado=null): Response
     {
+        $sesion=$this->get('session');
+
         $form = $this->createForm(ContactoType::class);
 
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            // $form->getData() holds the submitted values
-            // but, the original `$task` variable has also been updated
-            $contactoEstablezido = $form->getData();
+        try {
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $contactoEstablezido = $form->getData();
 
-            $email = (new Email())
-                ->from('serverproyectocp@gmail.com')
-                ->to('angellopezpalacios61@gmail.com')
-                ->subject($contactoEstablezido['name'].' te ha contactado')
-                ->html('<p><strong>Correo:</strong> '.$contactoEstablezido['from'].'</p><p><strong>Mensaje:</strong> '.$contactoEstablezido['message'].'</p>');
+                $email = (new Email())
+                    ->from('serverproyectocp@gmail.com')
+                    ->to('angellopezpalacios61@gmail.com')
+                    ->subject($contactoEstablezido['name'] . ' te ha contactado')
+                    ->html('<p><strong>Correo:</strong> ' . $contactoEstablezido['from'] . '</p><p><strong>Mensaje:</strong> ' . $contactoEstablezido['message'] . '</p>');
 
-            $mailer->send($email);
-            // var_dump($task);
-            return $this->redirectToRoute('contacto');
+                $mailer->send($email);
+                
+            $sesion->set(
+                'resultado', 'Mensaje enviado con exito.'
+            );
+            return $this->redirectToRoute("contacto");
+                // return $this->redirectToRoute('contacto');
+            }
+        } catch (Exception $ex) {
+            $resultado='No se pudo enviar el mensaje.';
+            // $response->request->set('resultado', 'No se pudo enviar el mensaje.');
         }
 
+        
+        if($sesion->get("resultado")){
+            $resultado=$sesion->get("resultado");
+            $sesion->remove('resultado');
+        }
 
         return $this->render('contacto/contacto.html.twig', [
             'our_form' => $form->createView(),
+            'resultado' => $resultado,
         ]);
     }
 }

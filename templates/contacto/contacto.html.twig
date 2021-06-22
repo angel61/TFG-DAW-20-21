@@ -11,9 +11,9 @@
 	<div class="container contenedor-contacto">
 		<div data-aos="fade-up" data-aos-duration="1000" data-aos-once="true" class="formulario-contacto col-md-8 col-lg-6 p-4 my-5 bg-light">
 			<div class="titulo-contacto">Contactanos</div>
+				{% if resultado != null %}<p>{{ resultado }}</p>{% endif %}
 			{{ form_start(our_form) }}
 			<div class="d-flex flex-column contenedor-form-contacto">
-
 				{{ form_row(our_form.name, { 
                     'attr': {'class': 'input-borde'}
 				}) }}
