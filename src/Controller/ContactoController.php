@@ -37,7 +37,7 @@ class ContactoController extends AbstractController
                 $mailer->send($email);
                 
             $sesion->set(
-                'resultado', 'Mensaje enviado con exito.'
+                'resultado', 'Mensaje enviado con éxito.'
             );
             return $this->redirectToRoute("contacto");
                 // return $this->redirectToRoute('contacto');
